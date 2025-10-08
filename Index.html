@@ -11,132 +11,81 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./Style/global.css" />
-    <link rel="stylesheet" href="JS/" />
+    <link rel="stylesheet" href="JS/index.js" />
   </head>
   <body>
-    <header class="text-white d-flex align-items-center vw-100 px-5 py-3">
-      <a href="Index.html">
-        <div class="d-flex flex-row align-items-center justify-content-start">
-          <img src="IMG/N (3).png" alt="" class="image-fluid" />
-          <h4>NeoTech</h4>
-        </div>
-      </a>
+    <header
+      id="header"
+      class="p-3 d-flex flex-wrap justify-content-between align-items-center"
+    >
+      <a href="Index.html"
+        ><img src="IMG/LogoNT.png" alt="Logo NT" id="logoImg"
+      /></a>
       <input
-        type="search"
-        name="BarraBusca"
-        id="BarraBusca"
-        placeholder="Digite sua busca"
-        class="w-50 rounded-4 p-1 ps-2 mx-auto border text-white"
+        type="text"
+        name="busca"
+        id="busca"
+        placeholder="O que você procura?"
+        class="mx-auto px-2 rounded-4 w-50"
       />
-      <div class="d-flex flex-row align-items-center justify-content-end">
-        <button class="btn btn-outline-light mx-2 fw-bold">Entrar</button>
-        <button class="btn btn-outline-light fw-bold">Cadastrar</button>
+      <div class="d-flex flex-nowrap gap-1">
+        <button class="btn btn-outline-light fw-bold">Entrar</button>
+        <button class="btn btn-outline-light fw-bold">cadastrar</button>
       </div>
     </header>
 
-    <div class="container-fluid p-5" id="mainCarrossel">
-      <div id="carousel" class="carousel slide mx-auto rounded-3">
-        <div class="carousel-inner">
-          <div class="carousel-item rounded-4 active">
-            <img src="IMG/N (3).png" class="d-block w-100 rounded-4" alt="" />
-          </div>
-          <div class="carousel-item rounded-4">
-            <img
-              src="../FrontEnd/IMG/processador-removebg-preview.png"
-              class="d-block w-100 rounded-4"
-              alt=""
-            />
-          </div>
-          <div class="carousel-item rounded-4">
-            <img
-              src="IMG/placa-de-video-removebg-preview.png"
-              class="d-block w-100 rounded-4"
-              alt=""
-            />
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+    <div id="banner">
+      <img src="IMG/N (3).png" alt="Banner promocional" id="bannerImg" />
     </div>
 
-    <nav class="container-fluid p-0" id="navCategorias">
-      <div class="container py-3 pt-5" id="mainProdutos">
-        <h2 class="text-white text-center fw-bold mb-5">Categorias</h2>
-        <ul
-          class="d-flex flex-row justify-content-evenly align-items-center list-unlysted"
-        >
-          <li
-            class="d-flex flex-column justify-content-center align-items-center"
-          >
-            <a
-              href=""
-              class="catFundo rounded-circle ms-3 p-2 btn btn-outline-light"
-            >
-              <img
-                src="IMG/gabinete-removebg-preview.png"
-                alt=""
-                class="imgCategoria hidden"
-              />
-            </a>
-            <p class="textCat text-white">Memória</p>
-          </li>
-          <li class="catFundo rounded-circle ms-3 p-2 btn btn-outline-light">
-            <a href="#">
-              <img
-                src="IMG/processador-removebg-preview.png"
-                alt=""
-                class="imgCategoria"
-              />
-            </a>
-          </li>
-          <li class="catFundo rounded-circle ms-3 p-2 btn btn-outline-light">
-            <a href="#">
-              <img
-                src="IMG/placa-de-video-removebg-preview.png"
-                alt=""
-                class="imgCategoria"
-              />
-            </a>
-          </li>
-          <li class="catFundo rounded-circle ms-3 p-2 btn btn-outline-light">
-            <a href="#">
-              <img
-                src="IMG/computer-memory-storage-removebg-preview.png"
-                alt=""
-                class="imgCategoria"
-              />
-            </a>
-          </li>
-          <li class="catFundo rounded-circle ms-3 p-2 btn btn-outline-light">
-            <a href="#">
-              <img
-                src="IMG/perifericos-removebg-preview.png"
-                alt=""
-                class="imgCategoria"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
+    <nav id="nav" class="py-5">
+      <h2 class="text-center fw-bold">CATEGORIAS</h2>
+      <ul
+        class="list-unstyled d-flex flex-wrap justify-content-around align-items-center p-3 my-0 mx-auto container"
+        id="navCategorias"
+      >
+        <li class="categoriasLi rounded-circle" id="">
+          <img
+            src="IMG/computer-memory-storage-categoria.png"
+            alt="categoriaImg"
+            class="categoriasImg"
+          />
+        </li>
+        <li class="categoriasLi rounded-circle" id="">
+          <img
+            src="IMG/gabinete-categoria.png"
+            alt="categoriaImg"
+            class="categoriasImg"
+          />
+        </li>
+        <li class="categoriasLi rounded-circle" id="">
+          <img
+            src="IMG/processador-categoria.png"
+            alt="categoriaImg"
+            class="categoriasImg"
+          />
+        </li>
+        <li class="categoriasLi rounded-circle" id="">
+          <img
+            src="IMG/placa-de-video-categoria.png"
+            alt="categoriaImg"
+            class="categoriasImg"
+          />
+        </li>
+        <li class="categoriasLi rounded-circle" id="">
+          <img
+            src="IMG/perifericos-categoria.png"
+            alt="categoriaImg"
+            class="categoriasImg"
+          />
+        </li>
+      </ul>
     </nav>
-    <main class="container min-vh-100"></main>
+
+    <main id="main" class="min-vh-100 my-0">
+      <div class="container" id="mainProdutos"></div>
+    </main>
+    <footer id="footer"></footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

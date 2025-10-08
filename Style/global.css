@@ -1,49 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: var(--colorWhite);
+}
+
 :root {
-  --background-color: #000000;
+  --colorGrayDark: #212121;
+  --colorGraylight: #414141;
+  --colorBlack: #000000;
+  --colorWhite: #ffffff;
 }
 
-header {
-  background-color: var(--background-color);
+/*configuração gerais*/
+#header,
+#footer {
+  background-color: var(--colorBlack);
 }
-
-#BarraBusca {
-  background-color: #212121;
-}
-
-img {
-  width: 75px;
-  height: 75px;
-}
-
-#mainProdutos,
-main,
-#mainCarrossel,
-.catFundo {
-  background-color: #212121;
-}
-#navCategorias,
+#nav,
 #main {
-  background-color: var(--background-color);
+  background-color: var(--colorGrayDark);
 }
 
-.catFundo {
-  border: 2px solid #212121;
-  background: #3d3d3d;
+/*Estilizações do Header*/
+
+#logoImg {
+  height: 70px;
+}
+#busca {
+  background: var(--colorGraylight);
+  border: 2px solid var(--colorGraylight);
 }
 
-.imgCategoria {
-  border-bottom-left-radius: 100%;
-  border-bottom-right-radius: 100%;
-  height: 100px;
+/*Configuração do banner*/
+#bannerImg {
+  width: 100%;
+  height: 50vh;
+}
+
+/*Estilização do nav*/
+
+.categoriasImg {
   width: 100px;
+  height: 100px;
 }
-.imgCategoria:hover {
-  transform: translate(0px, -10px);
+.categoriasImg:hover {
+  transform: translateY(-10px);
   transition: 0.5s;
 }
-#carousel,
-.carousel-inner,
-.carousel-item > img {
-  height: 50vh;
-  width: 70vw;
+.categoriasLi {
+  background: var(--colorGraylight);
+}
+.categoriasLi:hover {
+  background: var(--colorWhite);
+  transition: 0.3s;
 }
