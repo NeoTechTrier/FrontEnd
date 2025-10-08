@@ -1,5 +1,8 @@
 :root {
   --background-color: #000000;
+  --colorGraylight: #414141;
+  --colorBlack: #000000;
+  --colorWhite: #ffffff;
 }
 
 header {
@@ -18,7 +21,7 @@ img {
 #mainProdutos,
 main,
 #mainCarrossel,
-.catFundo {
+.catFundo, #loginCadastro {
   background-color: #212121;
 }
 #navCategorias,
