@@ -26,7 +26,12 @@
   background-color: var(--colorGrayDark);
 }
 #inputEmail,
-#inputSenha {
+#inputSenha,
+#inputNome,
+#inputEndereco,
+#inputTelefone,
+#inputRg,
+#inputCpf {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -35,13 +40,13 @@ a {
   text-decoration: none;
   color: var(--colorWhite);
 }
-.btn {
+.btnLoginCad {
   background: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
 }
 
-.btn:hover {
+.btnLoginCad:hover {
   background: var(--colorWhite);
   border: 2px solid var(--colorGrayDark);
   color: var(--colorGrayDark);
