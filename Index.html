@@ -22,11 +22,17 @@
       /></a>
 
       <div class="d-flex flex-nowrap gap-1">
-        <a href="Pages/login.html" on class="btn btn-outline-light fw-bold"
+        <a
+          href="Pages/login.html"
+          class="btn btn-outline-light fw-bold"
+          id="botaoLogar"
           >Entrar</a
         >
-        <a href="Pages/cadastro.html" class="btn btn-outline-light fw-bold"
-          >cadastrar</a
+        <a
+          href="Pages/cadastro.html"
+          class="btn btn-outline-light fw-bold"
+          id="botaoCadastrar"
+          >Cadastrar</a
         >
       </div>
 
@@ -35,7 +41,7 @@
         name="busca"
         id="busca"
         placeholder="O que você procura?"
-        class="mx-auto px-2 rounded-4 w-100"
+        class="mx-auto px-2 rounded-4 w-75"
       />
     </header>
 
@@ -91,7 +97,9 @@
       <div
         class="container my-0 py-5 d-flex flex-row justify-content-between align-items-center flex-wrap"
         id="mainProdutos"
-      ></div>
+      >
+        <!--Produtos são carregados aqui dinamicamente-->
+      </div>
     </div>
 
     <footer id="footer">

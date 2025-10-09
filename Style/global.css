@@ -11,6 +11,7 @@
   --colorGraylight: #414141;
   --colorBlack: #000000;
   --colorWhite: #ffffff;
+  --colorBlue: #0d6efd;
 }
 
 /*configuração gerais*/
@@ -55,12 +56,6 @@ a {
   border-radius: 50px;
   transition: 1s;
 }
-.card {
-  background-color: var(--colorGraylight);
-  color: var(--colorBlack);
-  width: 350px;
-  height: 350px;
-}
 
 /*Estilizações do Header*/
 #logoImg {
@@ -72,7 +67,7 @@ a {
 }
 #botaoLogar:hover,
 #botaoCadastrar:hover {
-  color: var(--colorGrayDark);
+  color: var(--colorBlue);
 }
 
 /*Configuração do banner*/
@@ -94,7 +89,7 @@ a {
   background: var(--colorGraylight);
 }
 .categoriasLi:hover {
-  background: var(--colorWhite);
+  background: var(--colorBlue);
   transition: 0.3s;
 }
 
@@ -111,4 +106,26 @@ a {
 #inputEmail::placeholder,
 #inputSenha::placeholder {
   color: var(--colorGrayDark);
+}
+
+/*Estilização dos cards*/
+.card {
+  background-color: var(--colorGraylight);
+  color: var(--colorBlack);
+  border: 1px solid var(--colorBlack);
+  width: 350px;
+  box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.274);
+}
+.card-body {
+  width: 350px;
+  height: 200px;
+}
+.card-img-top {
+  height: 200px;
+}
+
+@media screen and (min-width: 600px) {
+  #busca {
+    width: 100% !important;
+  }
 }
