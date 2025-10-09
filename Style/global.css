@@ -15,16 +15,38 @@
 
 /*configuração gerais*/
 #header,
-#footer {
+#footer,
+#mainForm,
+#fundoLogin {
   background-color: var(--colorBlack);
 }
 #nav,
-#main {
+#main,
+#formularioLogin {
   background-color: var(--colorGrayDark);
+}
+#inputEmail,
+#inputSenha {
+  background-color: var(--colorGraylight);
+  border: 2px solid var(--colorGraylight);
+  color: var(--colorWhite);
 }
 a {
   text-decoration: none;
   color: var(--colorWhite);
+}
+.btn {
+  background: var(--colorGraylight);
+  border: 2px solid var(--colorGraylight);
+  color: var(--colorWhite);
+}
+
+.btn:hover {
+  background: var(--colorWhite);
+  border: 2px solid var(--colorGrayDark);
+  color: var(--colorGrayDark);
+  border-radius: 50px;
+  transition: 1s;
 }
 
 /*Estilizações do Header*/
@@ -34,6 +56,10 @@ a {
 #busca {
   background: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
+}
+#botaoLogar:hover,
+#botaoCadastrar:hover {
+  color: var(--colorGrayDark);
 }
 
 /*Configuração do banner*/
@@ -57,4 +83,19 @@ a {
 .categoriasLi:hover {
   background: var(--colorWhite);
   transition: 0.3s;
+}
+
+/*Estilização login*/
+#formularioLogin {
+  border: 2px solid var(--colorGraylight);
+  box-shadow: -4px 5px 5px rgba(58, 57, 57, 0.151);
+}
+.linksLogin:hover {
+  text-decoration: underline;
+  color: var(--colorBlack);
+  transition: 0.2s;
+}
+#inputEmail::placeholder,
+#inputSenha::placeholder {
+  color: var(--colorGrayDark);
 }
