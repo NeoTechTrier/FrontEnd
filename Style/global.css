@@ -22,6 +22,10 @@
 #main {
   background-color: var(--colorGrayDark);
 }
+a {
+  text-decoration: none;
+  color: var(--colorWhite);
+}
 
 /*Estilizações do Header*/
 #logoImg {
