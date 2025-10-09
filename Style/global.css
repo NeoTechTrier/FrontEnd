@@ -22,6 +22,7 @@
 }
 #nav,
 #main,
+#mainProdutos,
 #formularioLogin {
   background-color: var(--colorGrayDark);
 }
@@ -31,7 +32,8 @@
 #inputEndereco,
 #inputTelefone,
 #inputRg,
-#inputCpf {
+#inputCpf,
+#mainCarrinho {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -52,6 +54,12 @@ a {
   color: var(--colorGrayDark);
   border-radius: 50px;
   transition: 1s;
+}
+.card {
+  background-color: var(--colorGraylight);
+  color: var(--colorBlack);
+  width: 350px;
+  height: 350px;
 }
 
 /*Estilizações do Header*/
