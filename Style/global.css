@@ -63,7 +63,15 @@ a {
 }
 #botaoLogar:hover,
 #botaoCadastrar:hover {
-  color: var(--colorBlue);
+  color: var(--colorBlack);
+  background-image: linear-gradient(
+    to right,
+    var(--colorBlue),
+    var(--colorWhite)
+  );
+  font-weight: bold;
+  transition: 0.9s;
+  border: none;
 }
 
 /*Configuração do banner*/
@@ -103,8 +111,20 @@ a {
 #inputTelefone::placeholder,
 #inputRg::placeholder,
 #inputCpf::placeholder {
-  color: var(--colorGraylight);
+  color: var(--colorBlue);
 }
+
+#inputEmail,
+#inputSenha,
+#inputNome,
+#inputEndereco,
+#inputTelefone,
+#inputRg,
+#inputCpf {
+  border: 1px solid var(--colorBlue);
+  color: var(--colorWhite);
+}
+
 .btnLoginCad {
   background: var(--colorGrayDark);
   border: 2px solid var(--colorGraylight);
@@ -151,6 +171,7 @@ a {
   );
   font-weight: bold;
   transition: 0.9s;
+  border: none;
 }
 
 /*MEDIA QUERYS*/
