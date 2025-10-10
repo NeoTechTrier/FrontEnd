@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="JS/index.js" />
   </head>
   <body>
-    <header id="header">
+    <header id="headerLogin">
       <a href="../Index.html"
         ><img src="../IMG/LogoNT.png" alt="Logo NT" id="logoImg"
       /></a>
@@ -44,11 +44,13 @@
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}"
             required
           />
-          <button class="btn btnLoginCad fw-bold w-50 mb-3" id="botaoLogin">
+          <button
+            type="submit"
+            class="btn btnLoginCad fw-bold w-50 mb-3"
+            id="botaoLogin"
+          >
             Entrar
           </button>
-          <br />
-          <a href="#" class="linksLogin fw-bold">Esqueci minha senha</a>
           <br />
           <a href="cadastro.html" class="linksLogin fw-bold">Cadastre-se</a>
         </form>
