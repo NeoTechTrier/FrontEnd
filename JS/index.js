@@ -1,23 +1,20 @@
 const produtos = [
   //produtos teste
   {
-    id: 1,
     image: "./IMG/perifericos-categoria.png",
     nome: "Mouse Gamer Logitech G502 HERO",
     categoria: "Periféricos",
-    preco: 349.9,
+    preco: 349.99,
     descricao: "Mouse gamer com 11 botões programáveis e sensor HERO 25K.",
   },
   {
-    id: 2,
     image: "./IMG/perifericos-categoria.png",
     nome: "Teclado Mecânico Redragon Kumara K552",
     categoria: "Periféricos",
-    preco: 289.9,
+    preco: 289.99,
     descricao: "Teclado mecânico com switches Outemu Blue e iluminação RGB.",
   },
   {
-    id: 3,
     image: "./IMG/computer-memory-storage-categoria.png",
     nome: "Corsair Vengeance LPX 16GB (2x8GB) DDR4 3200MHz",
     categoria: "Memória RAM",
@@ -26,7 +23,6 @@ const produtos = [
       "Kit dual channel de alta performance, ideal para gamers e criadores.",
   },
   {
-    id: 4,
     image: "./IMG/computer-memory-storage-categoria.png",
     nome: "Kingston Fury Beast 8GB DDR5 5200MHz",
     categoria: "Memória RAM",
@@ -34,7 +30,6 @@ const produtos = [
     descricao: "Módulo de memória DDR5 com alta velocidade e design elegante.",
   },
   {
-    id: 5,
     image: "./IMG/processador-categoria.png",
     nome: "Intel Core i5-13600K",
     categoria: "Processador",
@@ -43,7 +38,6 @@ const produtos = [
       "Processador de 14 núcleos (6P+8E) para alto desempenho em jogos e multitarefa.",
   },
   {
-    id: 6,
     image: "./IMG/processador-categoria.png",
     nome: "AMD Ryzen 7 7800X3D",
     categoria: "Processador",
@@ -52,7 +46,6 @@ const produtos = [
       "Processador topo de linha com tecnologia 3D V-Cache para máximo desempenho em games.",
   },
   {
-    id: 7,
     image: "./IMG/placa-de-video-categoria.png",
     nome: "NVIDIA GeForce RTX 4070 Ti 12GB",
     categoria: "Placa de Vídeo",
@@ -61,7 +54,6 @@ const produtos = [
       "Placa de vídeo com arquitetura Ada Lovelace e Ray Tracing de última geração.",
   },
   {
-    id: 8,
     image: "./IMG/placa-de-video-categoria.png",
     nome: "AMD Radeon RX 7800 XT 16GB",
     categoria: "Placa de Vídeo",
@@ -69,7 +61,6 @@ const produtos = [
     descricao: "Desempenho excelente em 1440p com suporte à tecnologia FSR 3.",
   },
   {
-    id: 9,
     image: "./IMG/gabinete-categoria.png",
     nome: "NZXT H510 Flow",
     categoria: "Gabinete",
@@ -77,7 +68,6 @@ const produtos = [
     descricao: "Gabinete Mid Tower com ótimo fluxo de ar e design minimalista.",
   },
   {
-    id: 10,
     image: "./IMG/gabinete-categoria.png",
     nome: "Cooler Master TD500 Mesh V2",
     categoria: "Gabinete",
@@ -89,6 +79,9 @@ const produtos = [
 
 const mainProdutos = document.getElementById("mainProdutos");
 const senhaInput = document.getElementById("inputSenha");
+const filtros = document.getElementById("navCategorias");
+const inputBusca = document.getElementById("busca");
+const produtosComId = produtos.map((p, index) => ({ ...p, id: index }));
 
 function exibirProdutos(lista) {
   mainProdutos.innerHTML = "";
@@ -111,7 +104,7 @@ function exibirProdutos(lista) {
                 ${produto.descricao}
               </p>
           </div>
-          <a href="#" class="btn btn-outline-primary w-100  mx-auto mt-auto cardBtn"
+          <a href="#" class="btn w-100  mx-auto mt-auto cardBtn"
                 >Adicionar ao carrinho</a
               >
         </div>
@@ -119,8 +112,32 @@ function exibirProdutos(lista) {
     mainProdutos.appendChild(col);
   });
 }
-console.log(produtos);
+
+//Função para filtrar os produtos
+function filtrarCategoria(categoria) {
+  if (!categoria) return produtosComId;
+  return produtosComId.filter((p) => p.categoria === categoria);
+}
+
+filtros.addEventListener("click", function (e) {
+  if (e.target.tagName === "IMG") {
+    Array.from(this.children).forEach((btn) => btn.classList.remove("active"));
+    e.target.classList.add("active");
+    const categoria = e.target.getAttribute("data-categoria");
+    exibirProdutos(filtrarCategoria(categoria));
+  }
+});
+
+inputBusca.addEventListener("input", function () {
+  const filtroInput = this.value.toLowerCase();
+  const listaFiltrada = produtosComId.filter(
+    (produto) =>
+      produto.nome.toLowerCase().includes(filtroInput) ||
+      produto.categoria.toLowerCase().includes(filtroInput)
+  );
+  exibirProdutos(listaFiltrada);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
-  exibirProdutos(produtos);
+  exibirProdutos(produtosComId);
 });
