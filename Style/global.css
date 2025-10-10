@@ -16,25 +16,29 @@
 
 /*configuração gerais*/
 #header,
-#footer,
-#mainForm,
-#fundoLogin {
+#footer {
   background-color: var(--colorBlack);
 }
 #nav,
 #main,
 #mainProdutos,
-#formularioLogin {
-  background-color: var(--colorGrayDark);
-}
+#mainForm,
+#headerLogin,
+#headerCadastro,
+#fundoLogin,
 #inputEmail,
 #inputSenha,
 #inputNome,
 #inputEndereco,
 #inputTelefone,
 #inputRg,
-#inputCpf,
-#mainCarrinho {
+#inputCpf {
+  background-color: var(--colorGrayDark);
+}
+
+#mainCarrinho,
+#formularioLogin,
+#formularioCadastro {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -43,18 +47,10 @@ a {
   text-decoration: none;
   color: var(--colorWhite);
 }
-.btnLoginCad {
-  background: var(--colorGraylight);
-  border: 2px solid var(--colorGraylight);
-  color: var(--colorWhite);
-}
-
-.btnLoginCad:hover {
-  background: var(--colorWhite);
+#formularioLogin,
+#formularioCadastro {
   border: 2px solid var(--colorGrayDark);
-  color: var(--colorGrayDark);
-  border-radius: 50px;
-  transition: 1s;
+  box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.13);
 }
 
 /*Estilizações do Header*/
@@ -94,18 +90,32 @@ a {
 }
 
 /*Estilização login*/
-#formularioLogin {
-  border: 2px solid var(--colorGraylight);
-  box-shadow: -4px 5px 5px rgba(58, 57, 57, 0.151);
-}
+
 .linksLogin:hover {
   text-decoration: underline;
-  color: var(--colorBlack);
+  color: var(--colorBlue);
   transition: 0.2s;
 }
 #inputEmail::placeholder,
-#inputSenha::placeholder {
-  color: var(--colorGrayDark);
+#inputSenha::placeholder,
+#inputNome::placeholder,
+#inputEndereco::placeholder,
+#inputTelefone::placeholder,
+#inputRg::placeholder,
+#inputCpf::placeholder {
+  color: var(--colorGraylight);
+}
+.btnLoginCad {
+  background: var(--colorGrayDark);
+  border: 2px solid var(--colorGraylight);
+  color: var(--colorWhite);
+}
+
+.btnLoginCad:hover {
+  background: var(--colorWhite);
+  border: 2px solid var(--colorWhite);
+  color: var(--colorBlue);
+  transition: 1s;
 }
 
 /*Estilização dos cards*/
@@ -123,9 +133,17 @@ a {
 .card-img-top {
   height: 200px;
 }
+.badge {
+  background-color: var(--colorGrayDark) !important;
+  color: var(--colorBlue);
+}
 
 @media screen and (min-width: 600px) {
   #busca {
     width: 100% !important;
+  }
+  #formularioLogin,
+  #formularioCadastro {
+    width: 50% !important;
   }
 }

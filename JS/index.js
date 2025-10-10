@@ -88,7 +88,7 @@ const produtos = [
 ];
 
 const mainProdutos = document.getElementById("mainProdutos");
-const buttonCard = document.getElementsByClassName("cardBtn");
+const senhaInput = document.getElementById("inputSenha");
 
 function exibirProdutos(lista) {
   mainProdutos.innerHTML = "";
@@ -104,7 +104,7 @@ function exibirProdutos(lista) {
           <div class="card pb-5 px-3">
             <img src="${produto.image}" class="card-img-top" alt=""/>
             <div class="card-body">
-              <span class="card-title fw-bold bagde bg-primary rounded-3 p-1">${produto.categoria}</span>
+              <span class="card-title fw-bold badge rounded-3 px-2" id="categoriaBagde">${produto.categoria}</span>
               <p class="card-title fw-bold mt-2">${produto.nome}</p>
               <p class="card-text fw-bold text-primary">R$ ${produto.preco}</p>
               <p class="card-text mb-0">
