@@ -26,7 +26,7 @@ const produtos = [
     image: "./IMG/computer-memory-storage-categoria.png",
     nome: "Kingston Fury Beast 8GB DDR5 5200MHz",
     categoria: "Memória RAM",
-    preco: 379.9,
+    preco: 379.99,
     descricao: "Módulo de memória DDR5 com alta velocidade e design elegante.",
   },
   {
@@ -64,14 +64,14 @@ const produtos = [
     image: "./IMG/gabinete-categoria.png",
     nome: "NZXT H510 Flow",
     categoria: "Gabinete",
-    preco: 749.9,
+    preco: 749.99,
     descricao: "Gabinete Mid Tower com ótimo fluxo de ar e design minimalista.",
   },
   {
     image: "./IMG/gabinete-categoria.png",
     nome: "Cooler Master TD500 Mesh V2",
     categoria: "Gabinete",
-    preco: 829.9,
+    preco: 829.99,
     descricao:
       "Gabinete com painel frontal em mesh, suporte a RGB e excelente ventilação.",
   },
@@ -94,17 +94,17 @@ function exibirProdutos(lista) {
     const col = document.createElement("div");
     col.className = "mb-3 mx-auto";
     col.innerHTML = `
-          <div class="card pb-5 px-3">
+          <div class="card pb-3 px-3 ">
             <img src="${produto.image}" class="card-img-top" alt=""/>
             <div class="card-body">
               <span class="card-title fw-bold badge rounded-3 px-2" id="categoriaBagde">${produto.categoria}</span>
               <p class="card-title fw-bold mt-2">${produto.nome}</p>
               <p class="card-text fw-bold text-primary">R$ ${produto.preco}</p>
-              <p class="card-text mb-0">
+              <p class="card-text mb-3">
                 ${produto.descricao}
               </p>
           </div>
-          <a href="#" class="btn w-100  mx-auto mt-auto cardBtn"
+          <a href="#" class="btn w-100 mx-auto mt-auto cardBtn"
                 >Adicionar ao carrinho</a
               >
         </div>
@@ -140,4 +140,20 @@ inputBusca.addEventListener("input", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   exibirProdutos(produtosComId);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate__animated", "animate__fadeInUp");
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  // Escolha o que quer animar:
+  document.querySelectorAll("#mainProdutos, .categoriasLi").forEach((el) => {
+    observer.observe(el);
+  });
 });
