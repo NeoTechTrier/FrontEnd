@@ -139,6 +139,9 @@ a {
 }
 
 /*Estilização dos cards*/
+.animate__animated.animate__fadeInUp {
+  --animate-duration: 2s;
+}
 .card {
   background-color: var(--colorGraylight);
   color: var(--colorBlack);
