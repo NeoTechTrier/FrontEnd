@@ -16,6 +16,7 @@
 
 /*configuração gerais*/
 #header,
+#headerLogado,
 #footer {
   background-color: var(--colorBlack);
 }
@@ -32,7 +33,9 @@
 #inputEndereco,
 #inputTelefone,
 #inputRg,
-#inputCpf {
+#inputCpf,
+#inputCidade,
+#selectEstado {
   background-color: var(--colorGrayDark);
 }
 
@@ -110,7 +113,8 @@ a {
 #inputEndereco::placeholder,
 #inputTelefone::placeholder,
 #inputRg::placeholder,
-#inputCpf::placeholder {
+#inputCpf::placeholder,
+#inputCidade::placeholder {
   color: var(--colorBlue);
 }
 
@@ -120,7 +124,9 @@ a {
 #inputEndereco,
 #inputTelefone,
 #inputRg,
-#inputCpf {
+#inputCpf,
+#inputCidade,
+#selectEstado {
   border: 1px solid var(--colorBlue);
   color: var(--colorWhite);
 }
