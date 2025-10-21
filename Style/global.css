@@ -1,52 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: var(--colorWhite);
+}
+
 :root {
-  --background-color: #000000;
+  --colorGrayDark: #212121;
   --colorGraylight: #414141;
   --colorBlack: #000000;
   --colorWhite: #ffffff;
+  --colorBlue: #0d6efd;
 }
 
-header {
-  background-color: var(--background-color);
+/*configuração gerais*/
+#header,
+#footer {
+  background-color: var(--colorBlack);
 }
-
-#BarraBusca {
-  background-color: #212121;
-}
-
-img {
-  width: 75px;
-  height: 75px;
-}
-
+#nav,
+#main,
 #mainProdutos,
-main,
-#mainCarrossel,
-.catFundo {
-  background-color: #212121;
-}
-#navCategorias,
-#main {
-  background-color: var(--background-color);
+#mainForm,
+#headerLogin,
+#headerCadastro,
+#fundoLogin,
+#inputEmail,
+#inputSenha,
+#inputNome,
+#inputEndereco,
+#inputTelefone,
+#inputRg,
+#inputCpf {
+  background-color: var(--colorGrayDark);
 }
 
-.catFundo {
-  border: 2px solid #212121;
-  background: #3d3d3d;
+#mainCarrinho,
+#formularioLogin,
+#formularioCadastro {
+  background-color: var(--colorGraylight);
+  border: 2px solid var(--colorGraylight);
+  color: var(--colorWhite);
+}
+a {
+  text-decoration: none;
+  color: var(--colorWhite);
+}
+#formularioLogin,
+#formularioCadastro {
+  border: 2px solid var(--colorGrayDark);
+  box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.13);
 }
 
-.imgCategoria {
-  border-bottom-left-radius: 100%;
-  border-bottom-right-radius: 100%;
-  height: 100px;
+/*Estilizações do Header*/
+#logoImg {
+  height: 70px;
+}
+#busca {
+  background: var(--colorGraylight);
+  border: 2px solid var(--colorGraylight);
+}
+#botaoLogar:hover,
+#botaoCadastrar:hover {
+  color: var(--colorBlack);
+  background-image: linear-gradient(
+    to right,
+    var(--colorBlue),
+    var(--colorWhite)
+  );
+  font-weight: bold;
+  transition: 0.9s;
+  border: none;
+}
+
+/*Configuração do banner*/
+#bannerImg {
+  width: 100%;
+  height: 50vh;
+}
+
+/*Estilização do nav*/
+.categoriasImg {
   width: 100px;
+  height: 100px;
 }
-.imgCategoria:hover {
-  transform: translate(0px, -10px);
+.categoriasImg:hover {
+  transform: translateY(-10px);
   transition: 0.5s;
 }
-#carousel,
-.carousel-inner,
-.carousel-item > img {
-  height: 50vh;
-  width: 70vw;
+.categoriasLi {
+  background: var(--colorGraylight);
+}
+.categoriasLi:hover {
+  background: var(--colorBlue);
+  transition: 0.3s;
+}
+
+/*Estilização login*/
+
+.linksLogin:hover {
+  text-decoration: underline;
+  color: var(--colorBlue);
+  transition: 0.2s;
+}
+#inputEmail::placeholder,
+#inputSenha::placeholder,
+#inputNome::placeholder,
+#inputEndereco::placeholder,
+#inputTelefone::placeholder,
+#inputRg::placeholder,
+#inputCpf::placeholder {
+  color: var(--colorBlue);
+}
+
+#inputEmail,
+#inputSenha,
+#inputNome,
+#inputEndereco,
+#inputTelefone,
+#inputRg,
+#inputCpf {
+  border: 1px solid var(--colorBlue);
+  color: var(--colorWhite);
+}
+
+.btnLoginCad {
+  background: var(--colorGrayDark);
+  border: 2px solid var(--colorGraylight);
+  color: var(--colorWhite);
+}
+
+.btnLoginCad:hover {
+  background: var(--colorWhite);
+  border: 2px solid var(--colorWhite);
+  color: var(--colorBlue);
+  transition: 1s;
+}
+
+/*Estilização dos cards*/
+.animate__animated.animate__fadeInUp {
+  --animate-duration: 2s;
+}
+.card {
+  background-color: var(--colorGraylight);
+  color: var(--colorBlack);
+  border: 1px solid var(--colorBlack);
+  width: 350px;
+  box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.274);
+}
+.card-body {
+  width: 350px;
+  height: 200px;
+}
+.card-img-top {
+  height: 200px;
+}
+.badge {
+  background-color: var(--colorGrayDark) !important;
+  color: var(--colorBlue);
+}
+.cardBtn {
+  border: 1px solid var(--colorBlue);
+  color: #0d6efd;
+  font-weight: bold;
+}
+.cardBtn:hover {
+  color: var(--colorBlack);
+  background-image: linear-gradient(
+    to right,
+    var(--colorBlue),
+    var(--colorGrayDark)
+  );
+  font-weight: bold;
+  transition: 0.9s;
+  border: none;
+}
+
+/*MEDIA QUERYS*/
+@media screen and (min-width: 768px) {
+  #busca {
+    width: 100% !important;
+  }
+  #formularioLogin,
+  #formularioCadastro {
+    width: 50% !important;
+  }
 }
