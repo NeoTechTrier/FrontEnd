@@ -24,24 +24,21 @@
 #main,
 #mainProdutos,
 #mainForm,
+#mainCadProd,
 #headerLogin,
 #headerCadastro,
 #fundoLogin,
-#inputEmail,
-#inputSenha,
-#inputNome,
-#inputEndereco,
-#inputTelefone,
-#inputRg,
-#inputCpf,
-#inputCidade,
-#selectEstado {
+.inputsAll {
   background-color: var(--colorGrayDark);
 }
-
+.inputsAll:focus {
+  background-color: var(--colorGrayDark);
+  color: var(--colorBlue);
+}
 #mainCarrinho,
 #formularioLogin,
-#formularioCadastro {
+#formularioCadastro,
+#formularioCadastroProduto {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -51,7 +48,8 @@ a {
   color: var(--colorWhite);
 }
 #formularioLogin,
-#formularioCadastro {
+#formularioCadastro,
+#formularioCadastroProduto {
   border: 2px solid var(--colorGrayDark);
   box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.13);
 }
@@ -107,26 +105,12 @@ a {
   color: var(--colorBlue);
   transition: 0.2s;
 }
-#inputEmail::placeholder,
-#inputSenha::placeholder,
-#inputNome::placeholder,
-#inputEndereco::placeholder,
-#inputTelefone::placeholder,
-#inputRg::placeholder,
-#inputCpf::placeholder,
-#inputCidade::placeholder {
+
+.inputsAll::placeholder {
   color: var(--colorBlue);
 }
 
-#inputEmail,
-#inputSenha,
-#inputNome,
-#inputEndereco,
-#inputTelefone,
-#inputRg,
-#inputCpf,
-#inputCidade,
-#selectEstado {
+.inputsAll {
   border: 1px solid var(--colorBlue);
   color: var(--colorWhite);
 }
@@ -183,13 +167,19 @@ a {
   border: none;
 }
 
+/*Cadastro de produto*/
+#imgProduto {
+  height: 200px;
+}
+
 /*MEDIA QUERYS*/
 @media screen and (min-width: 768px) {
   #busca {
     width: 100% !important;
   }
   #formularioLogin,
-  #formularioCadastro {
+  #formularioCadastro,
+  #formularioCadastroProduto {
     width: 50% !important;
   }
 }
