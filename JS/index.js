@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cardBody.classList = "card-body";
       img.classList = "card-img-top";
       title.classList = "fw-bold";
-      categoria.classList = "badge w-25";
+      categoria.classList = "badge px-3 py-1";
       valor.classList = "text-primary fw-bold my-1";
       btnCarrinho.classList = "btn btn-outline-primary w-100 mx-auto cardBtn";
 
