@@ -35,146 +35,130 @@
         >
           <h2 class="fw-bold text-white mb-5">CADASTRO</h2>
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="nmCliente"
             >NOME
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="inputNome"
+            id="nmCliente"
+            name="nmCliente"
             class="form-control mb-3 inputsAll"
             placeholder="Digite aqui seu nome"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="nuCPF"
             >CPF
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="inputCpf"
+            id="nuCPF"
+            name="nuCPF"
             class="form-control mb-3 inputsAll"
             placeholder="000.000.000-00"
             pattern="\d{3}.\d{3}.\d{3}-\d{2}"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="nuTelefone"
             >TELEFONE
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="inputTelefone"
+            id="nuTelefone"
+            name="nuTelefone"
             class="form-control mb-3 inputsAll"
             placeholder="(00) 00000-0000"
             pattern="\(\d{2}\) \d{4,5}-\d{4}"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">RG </label>
+          <label class="fw-bold mb-2" for="nuRG">RG </label>
           <input
             type="text"
-            id="inputRg"
+            id="nuRG"
+            name="nuRG"
             class="form-control mb-3 inputsAll"
             placeholder="Digite aqui seu RG"
           />
 
-          <label class="fw-bold mb-2" for="inputCidade"
+          <label class="fw-bold mb-2" for="cep"
+            >CEP
+            <span class="text-danger fw-bolder">*</span>
+          <input type="text" id="cep" name="cep" class="form-control mb-3 inputsAll" required />
+
+          <label class="fw-bold mb-2" for="dsEstado"
             >ESTADO
             <span class="text-danger fw-bolder">*</span>
           </label>
-          <select
-            name="estado"
-            id="selectEstado"
+          <input
+            name="dsEstado"
+            id="dsEstado"
             class="form-control mb-3 text-primary inputsAll"
-          >
-            <option value="1">Escolha um Estado</option>
-            <option value="2">Acre -AC</option>
-            <option value="3">Alagoas -</option>
-            <option value="4"></option>
-            <option value="5"></option>
-            <option value="6"></option>
-            <option value="7"></option>
-            <option value="8"></option>
-            <option value="9"></option>
-            <option value="10"></option>
-            <option value="11"></option>
-            <option value="12"></option>
-            <option value="13"></option>
-            <option value="14"></option>
-            <option value="15"></option>
-            <option value="16"></option>
-            <option value="17"></option>
-            <option value="18"></option>
-            <option value="19"></option>
-            <option value="20"></option>
-            <option value="21"></option>
-            <option value="22"></option>
-            <option value="23"></option>
-            <option value="24"></option>
-            <option value="25"></option>
-            <option value="26"></option>
-            <option value="27"></option>
-            <option value="28"></option>
-          </select>
+            readonly
+          />
 
-          <label class="fw-bold mb-2" for="inputCidade"
+          <label class="fw-bold mb-2" for="dsCidade"
             >CIDADE
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="inputCidade"
+            id="dsCidade"
+            name="dsCidade"
             class="form-control mb-3 inputsAll"
-            placeholder="Cidade Exemplo"
-            required
+            readonly
           />
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="dsEndereco"
             >ENDEREÇO
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
-            type="address"
-            id="inputEndereco"
+            type="text"
+            id="dsEndereco"
+            name="dsEndereco"
             class="form-control mb-3 inputsAll"
-            placeholder="Rua Exemplo"
-            required
+            readonly
           />
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="nuEndereco"
             >NÚMERO
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="number"
-            id="inputTelefone"
+            id="nuEndereco"
+            name="nuEndereco"
             class="form-control mb-3 inputsAll"
             placeholder="123"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail"
+          <label class="fw-bold mb-2" for="dsEmail"
             >EMAIL
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="email"
-            id="inputEmail"
+            id="dsEmail"
+            name="dsEmail"
             class="form-control mb-3 inputsAll"
             placeholder="exemplo@gmail.com"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputSenha"
+          <label class="fw-bold mb-2" for="dsSenha"
             >SENHA
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="password"
-            id="inputSenha"
+            id="dsSenha"
+            name="dsSenha"
             class="form-control mb-5 inputsAll"
             placeholder="Digite aqui sua senha"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}"
@@ -190,7 +174,7 @@
       </div>
     </div>
 
-    <script src="JS/index.js"></script>
+    <script src="../JS/index.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

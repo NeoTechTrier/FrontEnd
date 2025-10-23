@@ -1,6 +1,7 @@
 const mainProdutos = document.querySelector("#mainProdutos");
 const urlApi = "http://localhost:8085/produto/listar/todos";
 const urlproduto = "http://localhost:8085/produto";
+const urlusuario = "http://localhost:8085/usuario";
 //const urlCategoria = "http://localhost:8085/produto";
 
 //GET produtos home
@@ -56,44 +57,43 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//POST produtos
-document
-  .getElementById("botaoCadProduto")
-  .addEventListener("click", function () {
-    const nmProduto = document.getElementById("nmProduto").value;
-    const vlProduto = document.getElementById("vlProduto").value;
-    const dsProduto = document.getElementById("dsProduto").value;
-    const dsCategoria = document.getElementById("dsCategoria").value;
-    const imgProduto = document.getElementById("imgProduto").files[0];
-    const cdEmpresa = document.getElementById("cdEmpresa").value;
-    fetch(`${urlproduto}/criar`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erro ao enviar dados: ${response.status}`);
-        }
-      })
-      .then((data) => {
-        if (nmProduto && vlProduto && dsCategoria && dsProduto && imgProduto) {
-          const formData = new FormData();
-          formData.set("nmProduto", nmProduto);
-          formData.set("vlProduto", parseFloat(vlProduto, 10));
-          formData.set("dsProduto", dsProduto);
-          formData.set("dsCategoria", dsCategoria);
-          formData.set("imagem", imgProduto);
-          formData.set("cdEmpresa", cdEmpresa);
+document.getElementById("botaoLogin").addEventListener("click", function () {
+  const nmUsuario = document.getElementById("").value;
+});
 
-          alert("Dados enviados com sucesso");
-          console.log("Resposta da API:", data);
-        } else {
-          alert("Por favor, preencha todos os campos!");
-        }
-      })
-      .catch((error) => {
-        alert(`Error: ${error.message}`);
-        console.error(`Erro ${error.message}`);
-      });
-  });
+("use strict");
+const limparFormulario = (endereco) => {
+  document.getElementById("dsEndereco").value = "";
+  document.getElementById("dsCidade").value = "";
+  document.getElementById("dsEstado").value = "";
+};
+
+const preencherFormulario = (endereco) => {
+  document.getElementById("dsEndereco").value = endereco.logradouro;
+  document.getElementById("dsCidade").value = endereco.localidade;
+  document.getElementById("dsEstado").value = endereco.uf;
+};
+
+const eNumero = (numero) => /^[0-9]+$/.test(numero);
+
+const cepValido = (cep) => cep.length == 8 && eNumero(cep);
+
+const pesquisarCep = async () => {
+  limparFormulario();
+
+  const cep = document.getElementById("cep").value.replace("-", "");
+  const urlCep = `https://viacep.com.br/ws/${cep}/json/`;
+  if (cepValido(cep)) {
+    const dados = await fetch(urlCep);
+    const endereco = await dados.json();
+    if (endereco.hasOwnProperty("erro")) {
+      document.getElementById("dsEndereco").value = "CEP não encontrado!";
+    } else {
+      preencherFormulario(endereco);
+    }
+  } else {
+    document.getElementById("dsEndereco").value = "CEP incorreto!";
+  }
+};
+
+document.getElementById("cep").addEventListener("focusout", pesquisarCep);
