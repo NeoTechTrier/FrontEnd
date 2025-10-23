@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastro de Empresa</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -29,32 +29,43 @@
         id="mainForm"
       >
         <form class="form-control p-5 rounded-3" id="formularioCadastro">
-          <h2 class="fw-bold text-white mb-5">CADASTRO</h2>
+          <h2 class="fw-bold text-white mb-5">CADASTRO DE EMPRESA</h2>
 
-          <label class="fw-bold mb-2" for="nmCliente"
-            >NOME
+          <label class="fw-bold mb-2" for="nmFantasia"
+            >NOME FANTASIA
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="nmCliente"
-            name="nmCliente"
+            id="nmFantasia"
+            name="nmFantasia"
+            class="form-control mb-3 inputsAll"
+            placeholder="Digite aqui seu nome"
+            required
+          />
+          <label class="fw-bold mb-2" for="nmRazao"
+            >NOME RAZÃO
+            <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="text"
+            id="nmRazao"
+            name="nmRazao"
             class="form-control mb-3 inputsAll"
             placeholder="Digite aqui seu nome"
             required
           />
 
-          <label class="fw-bold mb-2" for="nuCPF"
-            >CPF
+          <label class="fw-bold mb-2" for="nuCNPJ"
+            >CNPJ
             <span class="text-danger fw-bolder">*</span>
           </label>
           <input
             type="text"
-            id="nuCPF"
-            name="nuCPF"
+            id="nuCNPJ"
+            name="nuCNPJ"
             class="form-control mb-3 inputsAll"
-            placeholder="000.000.000-00"
-            pattern="\d{3}.\d{3}.\d{3}-\d{2}"
+            placeholder="00.000.000/0000-00"
             required
           />
 
@@ -68,18 +79,9 @@
             name="nuTelefone"
             class="form-control mb-3 inputsAll"
             placeholder="(00) 00000-0000"
-            pattern="\(\d{2}\) \d{4,5}-\d{4}"
             required
           />
-
-          <label class="fw-bold mb-2" for="nuRG">RG </label>
-          <input
-            type="text"
-            id="nuRG"
-            name="nuRG"
-            class="form-control mb-3 inputsAll"
-            placeholder="Digite aqui seu RG"
-          />
+          <!--pattern="\(\d{2}\) \d{4,5}-\d{4}"-->
 
           <label class="fw-bold mb-2" for="cep"
             >CEP <span class="text-danger fw-bolder">*</span></label
@@ -119,6 +121,7 @@
             id="dsEndereco"
             name="dsEndereco"
             class="form-control mb-3 inputsAll"
+            required
           />
 
           <label class="fw-bold mb-2" for="nuEndereco"
@@ -134,47 +137,19 @@
             required
           />
 
-          <label class="fw-bold mb-2" for="dsEmail"
-            >EMAIL
-            <span class="text-danger fw-bolder">*</span>
-          </label>
-          <input
-            type="email"
-            id="dsEmail"
-            name="dsEmail"
-            class="form-control mb-3 inputsAll"
-            placeholder="exemplo@gmail.com"
-            required
-          />
-
-          <label class="fw-bold mb-2" for="dsSenha"
-            >SENHA
-            <span class="text-danger fw-bolder">*</span>
-          </label>
-          <input
-            type="password"
-            id="dsSenha"
-            name="dsSenha"
-            class="form-control mb-5 inputsAll"
-            placeholder="Digite aqui sua senha"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}"
-            required
-          />
-
           <button
             type="button"
             class="btn btnCad fw-bold w-50 mb-3"
-            id="botaoLogin"
+            id="botaoCadEmpresa"
           >
-            Cadastrar
+            CADASTRAR
           </button>
           <br />
-          <a href="login.html" class="linksLogin fw-bold">Entrar</a>
         </form>
       </div>
     </div>
 
-    <script src="../JS/index.js"></script>
+    <script src="../JS/cadEmpresa.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

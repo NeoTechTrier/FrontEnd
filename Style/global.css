@@ -115,13 +115,13 @@ a {
   color: var(--colorWhite);
 }
 
-.btnLoginCad {
+.btnCad {
   background: var(--colorGrayDark);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
 }
 
-.btnLoginCad:hover {
+.btnCad:hover {
   background: var(--colorWhite);
   border: 2px solid var(--colorWhite);
   color: var(--colorBlue);
