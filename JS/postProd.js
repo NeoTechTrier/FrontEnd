@@ -18,17 +18,17 @@ document
     let Categoria;
     switch (dsCategoria) {
       case "1":
-        Categoria = "PLACADEVIDEO";
+        Categoria = "PERIFERICOS";
         break;
       case "2":
-        Categoria = "RAM";
+        Categoria = "GABINETE";
         break;
       case "3":
+        Categoria = "RAM";
+        break;
+      case "4":
         Categoria = "PROCESSADOR";
         break;
-      // adicione os outros casos
-      default:
-        Categoria = "PROCESSADOR";
     }
 
     if (nmProduto && vlProduto && dsCategoria && dsProduto && imgProduto) {
@@ -72,6 +72,9 @@ document
     }
   });
 
+/*---------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------*/
 const urlEstoque = "http://localhost:8085/estoque/criar";
 
 document
