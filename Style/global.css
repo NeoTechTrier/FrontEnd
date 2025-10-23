@@ -16,6 +16,7 @@
 
 /*configuração gerais*/
 #header,
+#headerLogado,
 #footer {
   background-color: var(--colorBlack);
 }
@@ -23,22 +24,21 @@
 #main,
 #mainProdutos,
 #mainForm,
+#mainCadProd,
 #headerLogin,
 #headerCadastro,
 #fundoLogin,
-#inputEmail,
-#inputSenha,
-#inputNome,
-#inputEndereco,
-#inputTelefone,
-#inputRg,
-#inputCpf {
+.inputsAll {
   background-color: var(--colorGrayDark);
 }
-
+.inputsAll:focus {
+  background-color: var(--colorGrayDark);
+  color: var(--colorBlue);
+}
 #mainCarrinho,
 #formularioLogin,
-#formularioCadastro {
+#formularioCadastro,
+#formularioCadastroProduto {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -48,7 +48,8 @@ a {
   color: var(--colorWhite);
 }
 #formularioLogin,
-#formularioCadastro {
+#formularioCadastro,
+#formularioCadastroProduto {
   border: 2px solid var(--colorGrayDark);
   box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.13);
 }
@@ -104,23 +105,12 @@ a {
   color: var(--colorBlue);
   transition: 0.2s;
 }
-#inputEmail::placeholder,
-#inputSenha::placeholder,
-#inputNome::placeholder,
-#inputEndereco::placeholder,
-#inputTelefone::placeholder,
-#inputRg::placeholder,
-#inputCpf::placeholder {
+
+.inputsAll::placeholder {
   color: var(--colorBlue);
 }
 
-#inputEmail,
-#inputSenha,
-#inputNome,
-#inputEndereco,
-#inputTelefone,
-#inputRg,
-#inputCpf {
+.inputsAll {
   border: 1px solid var(--colorBlue);
   color: var(--colorWhite);
 }
@@ -151,7 +141,7 @@ a {
 }
 .card-body {
   width: 350px;
-  height: 200px;
+  height: 250px;
 }
 .card-img-top {
   height: 200px;
@@ -183,7 +173,8 @@ a {
     width: 100% !important;
   }
   #formularioLogin,
-  #formularioCadastro {
+  #formularioCadastro,
+  #formularioCadastroProduto {
     width: 50% !important;
   }
 }

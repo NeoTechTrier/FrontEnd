@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Produto</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../Style/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <header id="headerCadastro">
+      <a href="../Index.html"
+        ><img src="../IMG/LogoNT.png" alt="Logo NT" id="logoImg"
+      /></a>
+    </header>
+    <div class="container-fluid min-vh-100 py-5" id="fundoLogin">
+      <div
+        class="container my-auto min-vh-100 d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp d-none"
+        id="formCadEstoque"
+      ></div>
+
+      <!--CADASTRO DE PRODUTO-->
+      <div
+        class="container my-auto min-vh-100 d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp d-block"
+        id="formCadProduto"
+      >
+        <form
+          class="form-control vw-100 d-flex flex-column flex-nowrap justify-content-around align-items-center pt-3"
+          id="formularioCadastroProduto"
+        >
+          <h1>CADASTRO DE PRODUTO</h1>
+          <label for="nmProduto" class="fw-bold mb-2"
+            >NOME DO PRODUTO <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="text"
+            id="nmProduto"
+            name="nmProduto"
+            placeholder="Digite o nome aqui"
+            class="form-control mb-3 inputsAll"
+            required
+          />
+          <label for="vlProduto" class="fw-bold mb-2"
+            >VALOR DO PRODUTO <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="number"
+            id="vlProduto"
+            name="vlProduto"
+            placeholder="Valor do produto em reais (precisa ser positivo)"
+            class="form-control mb-3 inputsAll"
+            required
+          />
+          <label for="dsCategoria" class="fw-bold mb-2"
+            >CATEGORIA <span class="text-danger fw-bolder">*</span>
+          </label>
+          <select
+            id="dsCategoria"
+            name="dsCategoria"
+            class="form-control mb-3 inputsAll text-primary"
+          >
+            <option value="1" class="text-primary">Periféricos</option>
+            <option value="2" class="text-primary">Gabinete</option>
+            <option value="3" class="text-primary">Memória RAM</option>
+            <option value="4" class="text-primary">Processador</option>
+            </select>
+          <label for="dsProduto" class="fw-bold mb-2"
+            >DESCRIÇÃO DO PRODUTO <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="text"
+            id="dsProduto"
+            name="dsProduto"
+            placeholder="Digite a descrição do produto"
+            class="form-control mb-3 inputsAll"
+            required
+          />
+          <label for="cdEmpresa" class="fw-bold mb-2"
+            >CÓDIGO DA EMPRESA DO PRODUTO
+            <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="number"
+            id="cdEmpresa"
+            name="cdEmpresa"
+            placeholder="Digite aqui o código"
+            class="form-control mb-3 inputsAll"
+            required
+          />
+          <label for="imgProduto" class="fw-bold mb-2"
+            >IMAGEM DO PRODUTO <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="file"
+            id="imgProduto"
+            name="imgProduto"
+            class="form-control mb-3 inputsAll"
+            required
+          />
+          <a
+          href="cadastroProduto.html"
+            class="btn btnLoginCad fw-bold w-50 my-3"
+            data-bs-toggle="modal"
+            data-bs-target="#modalEstoque"
+            id="botaoCadProduto"
+          >
+            CADASTRAR
+        </a>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="modalEstoque" tabindex="-1" role="dialog">
+      <div class="modal-dialog border border-2 border-primary" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center" id="mainForm">
+              <h1>CADASTRO DE ESTOQUE</h1>
+              <label for="cdProduto" class="fw-bold mb-2"
+                >CÓDIGO DO PRODUTO <span class="text-danger fw-bolder">*</span>
+              </label>
+              <input
+                type="number"
+                id="cdProduto"
+                name="cdProduto"
+                placeholder="Digite o código aqui"
+                class="form-control mb-3 inputsAll"
+                required
+                readonly
+              />
+              <label for="qtdEstoqueProduto" class="fw-bold mb-2"
+                >QUANTIDADE DO PRODUTO<span class="text-danger fw-bolder"
+                  >*</span
+                >
+              </label>
+              <input
+                type="number"
+                id="qtdEstoqueProduto"
+                name="qtdEstoqueProduto"
+                placeholder="Quantidade do produto"
+                class="form-control mb-3 inputsAll"
+                required
+              />
+              <button
+                class="btn btnLoginCad fw-bold w-50 mb-3"
+                id="botaoCadEstoque"
+                
+              >
+                CADASTRAR
+              </button>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../JS/postProd.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

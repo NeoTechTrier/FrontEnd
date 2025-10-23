@@ -11,7 +11,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../Style/global.css" />
-    <link rel="stylesheet" href="JS/index.js" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body>
     <header id="headerCadastro">
@@ -22,7 +25,7 @@
 
     <div class="container-fluid py-5" id="fundoLogin">
       <div
-        class="container my-auto min-vh-100 d-flex flex-column justify-content-center align-items-center text-center"
+        class="container my-auto min-vh-100 d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp"
         id="mainForm"
       >
         <form
@@ -32,70 +35,131 @@
         >
           <h2 class="fw-bold text-white mb-5">CADASTRO</h2>
 
-          <label class="fw-bold mb-2" for="inputEmail">Nome</label>
+          <label class="fw-bold mb-2" for="nmCliente"
+            >NOME
+            <span class="text-danger fw-bolder">*</span>
+          </label>
           <input
             type="text"
-            id="inputNome"
-            class="form-control mb-3"
+            id="nmCliente"
+            name="nmCliente"
+            class="form-control mb-3 inputsAll"
             placeholder="Digite aqui seu nome"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">Cpf</label>
+          <label class="fw-bold mb-2" for="nuCPF"
+            >CPF
+            <span class="text-danger fw-bolder">*</span>
+          </label>
           <input
             type="text"
-            id="inputCpf"
-            class="form-control mb-3"
+            id="nuCPF"
+            name="nuCPF"
+            class="form-control mb-3 inputsAll"
             placeholder="000.000.000-00"
             pattern="\d{3}.\d{3}.\d{3}-\d{2}"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">Telefone</label>
+          <label class="fw-bold mb-2" for="nuTelefone"
+            >TELEFONE
+            <span class="text-danger fw-bolder">*</span>
+          </label>
           <input
             type="text"
-            id="inputTelefone"
-            class="form-control mb-3"
+            id="nuTelefone"
+            name="nuTelefone"
+            class="form-control mb-3 inputsAll"
             placeholder="(00) 00000-0000"
             pattern="\(\d{2}\) \d{4,5}-\d{4}"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">Rg</label>
-          <input type="text" id="inputRg" class="form-control mb-3" required />
-
-          <label class="fw-bold mb-2" for="inputEmail">Endereço</label>
+          <label class="fw-bold mb-2" for="nuRG">RG </label>
           <input
-            type="address"
-            id="inputEndereco"
-            class="form-control mb-3"
-            placeholder="Rua Exemplo"
+            type="text"
+            id="nuRG"
+            name="nuRG"
+            class="form-control mb-3 inputsAll"
+            placeholder="Digite aqui seu RG"
+          />
+
+          <label class="fw-bold mb-2" for="cep"
+            >CEP <span class="text-danger fw-bolder">*</span></label
+          >
+          <input
+            type="text"
+            id="cep"
+            name="cep"
+            class="form-control mb-3 inputsAll"
+            placeholder="Digite aqui seu cep"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">Número</label>
+          <label class="fw-bold mb-2" for="dsEstado">ESTADO </label>
           <input
-            type="number"
-            id="inputTelefone"
-            class="form-control mb-3"
+            name="dsEstado"
+            id="dsEstado"
+            class="form-control mb-3 text-primary inputsAll"
+            readonly
+          />
+
+          <label class="fw-bold mb-2" for="dsCidade">CIDADE </label>
+          <input
+            type="text"
+            id="dsCidade"
+            name="dsCidade"
+            class="form-control mb-3 inputsAll"
+            readonly
+          />
+
+          <label class="fw-bold mb-2" for="dsEndereco"
+            >ENDEREÇO
+            <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="text"
+            id="dsEndereco"
+            name="dsEndereco"
+            class="form-control mb-3 inputsAll"
+          />
+
+          <label class="fw-bold mb-2" for="nuEndereco"
+            >NÚMERO
+            <span class="text-danger fw-bolder">*</span>
+          </label>
+          <input
+            type="text"
+            id="nuEndereco"
+            name="nuEndereco"
+            class="form-control mb-3 inputsAll"
             placeholder="123"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputEmail">Email</label>
+          <label class="fw-bold mb-2" for="dsEmail"
+            >EMAIL
+            <span class="text-danger fw-bolder">*</span>
+          </label>
           <input
             type="email"
-            id="inputEmail"
-            class="form-control mb-3"
+            id="dsEmail"
+            name="dsEmail"
+            class="form-control mb-3 inputsAll"
             placeholder="exemplo@gmail.com"
             required
           />
 
-          <label class="fw-bold mb-2" for="inputSenha">Senha</label>
+          <label class="fw-bold mb-2" for="dsSenha"
+            >SENHA
+            <span class="text-danger fw-bolder">*</span>
+          </label>
           <input
             type="password"
-            id="inputSenha"
-            class="form-control mb-5"
+            id="dsSenha"
+            name="dsSenha"
+            class="form-control mb-5 inputsAll"
             placeholder="Digite aqui sua senha"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}"
             required
@@ -109,5 +173,12 @@
         </form>
       </div>
     </div>
+
+    <script src="../JS/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
