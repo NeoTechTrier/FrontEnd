@@ -1,7 +1,6 @@
 const mainProdutos = document.querySelector("#mainProdutos");
 const urlApi = "http://localhost:8085/produto/listar/todos";
 const urlproduto = "http://localhost:8085/produto";
-const urlUsuario = "http://localhost:8085/usuario/criar";
 
 let todosProdutos = []; //salva os produtos da API
 //função global para reutilizar em filtro e GET home
@@ -105,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*------------------------------------------------------------------------------------------------------*/
+
+const urlUsuario = "http://localhost:8085/usuario/criar";
 
 document.getElementById("botaoLogin").addEventListener("click", function () {
   const nmCliente = document.getElementById("nmCliente").value;
@@ -215,7 +216,7 @@ document.getElementById("botaoLogin").addEventListener("click", function () {
 });
 
 ("use strict");
-const limparFormulario = (endereco) => {
+const limparFormulario = () => {
   document.getElementById("dsEndereco").value = "";
   document.getElementById("dsCidade").value = "";
   document.getElementById("dsEstado").value = "";
@@ -250,3 +251,26 @@ const pesquisarCep = async () => {
 };
 
 document.getElementById("cep").addEventListener("focusout", pesquisarCep);
+
+document.getElementById("nuTelefone").addEventListener("input", (e) => {
+  let valor = e.target.value.replace(/\D/g, "");
+  valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+  valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+  e.target.value = valor.substring(0, 15);
+});
+
+document.getElementById("nuCPF").addEventListener("input", (e) => {
+  let valor = e.target.value.replace(/\D/g, "");
+  valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+  valor = valor.replace(/(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+  valor = valor.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+  e.target.value = valor.substring(0, 14);
+});
+/*------------------------------------------------------------------------------------------------------*/
+
+const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+const dropdownList = [...dropdownElementList].map(
+  (dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl)
+);
+/*------------------------------------------------------------------------------------------------------*/
+
