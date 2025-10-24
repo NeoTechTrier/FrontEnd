@@ -15,9 +15,8 @@
 }
 
 /*configuração gerais*/
-#header,
-#headerLogado,
-#footer {
+#footer,
+.headerFundo {
   background-color: var(--colorBlack);
 }
 #nav,
@@ -25,10 +24,10 @@
 #mainProdutos,
 #mainForm,
 #mainCadProd,
-#headerLogin,
 #headerCadastro,
 #fundoLogin,
-.inputsAll {
+.inputsAll,
+.fundoGeral {
   background-color: var(--colorGrayDark);
 }
 .inputsAll:focus {
@@ -38,7 +37,8 @@
 #mainCarrinho,
 #formularioLogin,
 #formularioCadastro,
-#formularioCadastroProduto {
+#formularioCadastroProduto,
+.dropdown {
   background-color: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
   color: var(--colorWhite);
@@ -62,8 +62,7 @@ a {
   background: var(--colorGraylight);
   border: 2px solid var(--colorGraylight);
 }
-#botaoLogar:hover,
-#botaoCadastrar:hover {
+.btnGeral:hover {
   color: var(--colorBlack);
   background-image: linear-gradient(
     to right,

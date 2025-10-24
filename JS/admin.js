@@ -113,60 +113,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*------------------------------------------------------------------------------------------------------*/
 
-const mainEmpresas = document.querySelector("#mainEmpresa");
-const urlEmpresa = "http://localhost:8085/empresa/listar/usuarios";
+const mainProdutos = document.querySelector("#mainProdutos");
+const urlApi = "http://localhost:8085/produto/listar/todos";
+const urlproduto = "http://localhost:8085/produto";
 
-function exibirUsuario(empresas) {
-  mainEmpresas.innerHTML = "";
-  empresas.forEach((empresa) => {
+function exibirProdutos(produtos) {
+  mainProdutos.innerHTML = "";
+  produtos.forEach((produto) => {
     //Define quais elementos devem ser criados
+    const div = document.createElement("div");
     const divCard = document.createElement("div");
     const cardBody = document.createElement("div");
-    const nome = document.createElement("p");
-    const telefone = document.createElement("p");
-    const email = document.createElement("p");
-    const cidade = document.createElement("p");
-    const flAtivo = document.createElement("p");
+    const img = document.createElement("img");
+    const title = document.createElement("h5");
+    const categoria = document.createElement("span");
+    const valor = document.createElement("p");
+    const descricao = document.createElement("p");
+    const btnCarrinho = document.createElement("a");
 
     //Define as listas de classes dos elementos para os cards
+    div.classList = "px-5 pb-3";
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
-    nome.classList = "text-center text-light fw-bold my-1";
-    telefone.classList = "text-primary fw-bold my-1";
-    email.classList = "text-primary fw-bold my-1";
-    cidade.classList = "text-primary fw-bold my-1";
-    flAtivo.classList = "text-primary fw-bold my-1";
+    img.classList = "card-img-top";
+    title.classList = "fw-bold";
+    categoria.classList = "badge px-3 py-1";
+    valor.classList = "text-primary fw-bold my-1";
+
+    //Chama a imagem através do endpoint
+    img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
+    img.alt = produto.nmProduto;
 
     //Define os dados a serem renderizados
-    nome.innerText = `${usuario.nmCliente}`;
-    email.innerText = `EMAIL: ${usuario.dsEmail}`;
-    telefone.innerText = `TELEFONE: ${usuario.nuTelefone}`;
-    cidade.innerText = `CIDADE: ${usuario.dsCidade}`;
-    flAtivo.innerText = `ATIVO: ${usuario.flAtivo}`;
+    title.innerText = `${produto.nmProduto}`;
+    categoria.innerText = `${produto.dsCategoria}`;
+    valor.innerText = `R$ ${produto.vlProduto}`;
+    descricao.innerText = `${produto.dsProduto}`;
 
     //Define a ordem dos elementos
+    divCard.appendChild(img);
     divCard.appendChild(cardBody);
-    cardBody.appendChild(nome);
-    cardBody.appendChild(email);
-    cardBody.appendChild(telefone);
-    cardBody.appendChild(cidade);
-    cardBody.appendChild(flAtivo);
-    mainUsuarios.appendChild(divCard);
+    cardBody.appendChild(title);
+    cardBody.appendChild(categoria);
+    cardBody.appendChild(valor);
+    cardBody.appendChild(descricao);
+    divCard.appendChild(div);
+    mainProdutos.appendChild(divCard);
   });
 }
 
+//GET produtos home
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(urlUsuario)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro ao buscar usuários\n" + ` ${response.status}`);
-      }
-      return response.json();
-    })
+  fetch(urlApi)
+    .then((response) => response.json())
     .then((data) => {
-      exibirUsuario(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar usuários:" + error);
+      exibirProdutos(data);
     });
 });

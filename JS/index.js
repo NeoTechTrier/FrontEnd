@@ -267,3 +267,8 @@ document.getElementById("nuCPF").addEventListener("input", (e) => {
   e.target.value = valor.substring(0, 14);
 });
 /*------------------------------------------------------------------------------------------------------*/
+
+const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+const dropdownList = [...dropdownElementList].map(
+  (dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl)
+);

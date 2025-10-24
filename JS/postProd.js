@@ -50,7 +50,6 @@ document
             throw new Error(`Erro ao enviar dados: ${response.status}`);
           }
           console.log(imgProduto);
-          cadEstoque.classList.toggle("d-none");
           cadProduto.classList.toggle("d-block");
           return response.json();
         })
