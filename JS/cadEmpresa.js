@@ -37,6 +37,7 @@ document
       };
       console.log("Telefone enviado:", nuTelefone);
       console.log("CNPJ enviado:", nuCNPJ);
+      const token = localStorage.getItem("token");
       fetch(urlEmpresa, {
         method: "POST",
         headers: { "Content-Type": "application/json",Authorization: `Bearer ${token}`},
@@ -100,11 +101,7 @@ document.getElementById("cep").addEventListener("focusout", pesquisarCep);
 
 /*Mascaras*/
 document.getElementById("nuCNPJ").addEventListener("input", (e) => {
-  let valor = e.target.value.replace(/\D/g, "");
-  valor = valor.replace(/^(\d{2})(\d)/, "$1.$2");
-  valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-  valor = valor.replace(/\.(\d{3})(\d)/, ".$1/$2");
-  valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+  let valor = e.target.value();
   e.target.value = valor.substring(0, 18);
 });
 

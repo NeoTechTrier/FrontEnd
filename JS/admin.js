@@ -40,8 +40,13 @@ function exibirUsuario(usuarios) {
   });
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(urlUsuario)
+  const token = localStorage.getItem("token");
+  fetch(urlUsuario,{
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` }
+}) 
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erro ao buscar usuários\n" + ` ${response.status}`);
@@ -96,6 +101,7 @@ function exibirEstoque(estoques) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   fetch(urlEstoque, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
@@ -167,6 +173,7 @@ function exibirProdutos(produtos) {
 
 //GET produtos home
 document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
   fetch(urlApi, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
@@ -222,6 +229,7 @@ document
       formData.set("cdEmpresa", cdEmpresa);
       console.log(imgProduto);
 
+      const token = localStorage.getItem("token");
       fetch(urlProduto, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
@@ -269,6 +277,7 @@ document
         qtdEstoqueProduto: parseInt(qtdEstoqueProduto),
       };
 
+      const token = localStorage.getItem("token");
       fetch(urlEstoqueCriar, {
         method: "POST",
         headers: {

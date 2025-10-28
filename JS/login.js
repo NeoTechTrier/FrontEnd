@@ -36,7 +36,6 @@ const btnLogin = document
 
           localStorage.setItem("token", token);
           alert("Login realizado com sucesso!");
-          console.log("Token salvo:", token);
 
           if (data.userRole === "USER") {
             window.location.href = "logado.html";
