@@ -198,12 +198,10 @@ document.getElementById("botaoCad").addEventListener("click", function () {
       dsEmail: dsEmail,
       dsSenha: dsSenha,
     };
-
     fetch(urlUsuario, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(payload),
     })
@@ -270,13 +268,6 @@ document.getElementById("nuTelefone").addEventListener("input", (e) => {
   e.target.value = valor.substring(0, 15);
 });
 
-document.getElementById("nuCPF").addEventListener("input", (e) => {
-  let valor = e.target.value.replace(/\D/g, "");
-  valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-  valor = valor.replace(/(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
-  valor = valor.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
-  e.target.value = valor.substring(0, 14);
-});
 /*------------------------------------------------------------------------------------------------------*/
 //DROPDOWN ADMIN
 const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
