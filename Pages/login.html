@@ -33,40 +33,45 @@
         class="container my-auto min-vh-100 d-flex flex-column justify-content-center align-items-center text-center animate__animated animate__fadeInUp"
         id="mainForm"
       >
-        <form action="" class="form-control p-5 rounded-3" id="formularioLogin">
+        <form class="form-control p-5 rounded-3" id="formularioLogin">
           <h2 class="fw-bold text-white mb-5">LOGIN</h2>
-          <label class="fw-bold mb-2" for="inputEmail">Email</label>
+          <label for="dsEmailLogin" class="fw-bold mb-2" for="inputEmail"
+            >Email</label
+          >
           <input
             type="email"
-            id="inputEmail"
+            id="dsEmailLogin"
+            name="dsEmailLogin"
             class="form-control mb-3 inputsAll"
             placeholder="exemplo@gmail.com"
             required
           />
-          <label class="fw-bold mb-2" for="inputSenha">Senha</label>
+          <label for="dsEmailLogin" class="fw-bold mb-2" for="inputSenha"
+            >Senha</label
+          >
           <input
             type="password"
-            id="inputSenha"
+            id="dsSenhaLogin"
+            name="dsSenhaLogin"
             class="form-control mb-5 inputsAll"
             placeholder="Digite aqui sua senha"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}"
             required
           />
-          <a
-            href="logado.html"
-            type="submit"
+          <button
+            type="button"
             class="btn btnCad fw-bold w-50 mb-3"
             id="botaoLogin"
           >
             Entrar
-          </a>
+          </button>
           <br />
           <a href="cadastro.html" class="linksLogin fw-bold">Cadastre-se</a>
         </form>
       </div>
     </div>
 
-    <script src="JS/index.js"></script>
+    <script src="../JS/login.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

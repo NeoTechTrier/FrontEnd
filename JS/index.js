@@ -1,3 +1,4 @@
+//GET DE TODOS PRODUTOS EM CARDS
 const mainProdutos = document.querySelector("#mainProdutos");
 const urlApi = "http://localhost:8085/produto/listar/todos";
 const urlproduto = "http://localhost:8085/produto";
@@ -28,6 +29,8 @@ function exibirProdutos(produtos) {
     valor.classList = "text-primary fw-bold my-1";
     btnCarrinho.classList = "btn btn-outline-primary w-100 mx-auto cardBtn";
 
+    console.log(produto);
+
     //Chama a imagem através do endpoint
     img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
     img.alt = produto.nmProduto;
@@ -54,10 +57,15 @@ function exibirProdutos(produtos) {
 
 //GET produtos home
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(urlApi)
+  const token = localStorage.getItem("token");
+  fetch(urlApi, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  })
     .then((response) => response.json())
     .then((data) => {
       todosProdutos = data;
+      console.log(token);
       exibirProdutos(todosProdutos);
     });
 });
@@ -104,10 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*------------------------------------------------------------------------------------------------------*/
+//CADASTRO DE USUÁRIO
+const urlUsuario = "http://localhost:8085/auth/register";
 
-const urlUsuario = "http://localhost:8085/usuario/criar";
-
-document.getElementById("botaoLogin").addEventListener("click", function () {
+document.getElementById("botaoCad").addEventListener("click", function () {
   const nmCliente = document.getElementById("nmCliente").value;
   const nuCPF = document.getElementById("nuCPF").value;
   const nuTelefone = document.getElementById("nuTelefone").value;
@@ -193,7 +201,10 @@ document.getElementById("botaoLogin").addEventListener("click", function () {
 
     fetch(urlUsuario, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -267,10 +278,9 @@ document.getElementById("nuCPF").addEventListener("input", (e) => {
   e.target.value = valor.substring(0, 14);
 });
 /*------------------------------------------------------------------------------------------------------*/
-
+//DROPDOWN ADMIN
 const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
 const dropdownList = [...dropdownElementList].map(
   (dropdownToggleEl) => new bootstrap.Dropdown(dropdownToggleEl)
 );
 /*------------------------------------------------------------------------------------------------------*/
-

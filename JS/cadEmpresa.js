@@ -39,7 +39,7 @@ document
       console.log("CNPJ enviado:", nuCNPJ);
       fetch(urlEmpresa, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",Authorization: `Bearer ${token}`},
         body: JSON.stringify(payload),
       })
         .then((response) => {

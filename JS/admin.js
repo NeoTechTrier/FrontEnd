@@ -96,7 +96,10 @@ function exibirEstoque(estoques) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(urlEstoque)
+  fetch(urlEstoque, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erro ao buscar estoque\n" + ` ${response.status}`);
@@ -164,7 +167,10 @@ function exibirProdutos(produtos) {
 
 //GET produtos home
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(urlApi)
+  fetch(urlApi, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  })
     .then((response) => response.json())
     .then((data) => {
       exibirProdutos(data);
@@ -218,6 +224,7 @@ document
 
       fetch(urlProduto, {
         method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
         body: formData,
       })
         .then((response) => {
@@ -266,6 +273,7 @@ document
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(payload),
       })
