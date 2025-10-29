@@ -1,0 +1,208 @@
+:root {
+    --colorGrayDark: #212121;
+    --colorGraylight: #414141;
+    --colorBlack: #000000;
+    --colorWhite: #ffffff;
+    --colorBlue: #0d6efd;
+}
+
+body {
+    background-color: var(--colorGrayDark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin: 0;
+    color: var(--colorWhite);
+    position: relative;
+    overflow: hidden;
+}
+
+#cart-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.09;
+    pointer-events: none;
+    border: 0;
+    /* Usa iframe como fundo: aplica blur e reduz saturação para não competir com o conteúdo */
+    filter: blur(6px) saturate(0.6);
+    transform: scale(1.03);
+}
+
+.payment-card {
+    background-color: var(--colorGraylight);
+    border-radius: 15px;
+    box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.274);
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    
+    .payment-card {
+        border-radius: 10px;
+        padding: 15px !important;
+    }
+    
+    .payment-option {
+        padding: 15px;
+    }
+    
+    .payment-option i {
+        font-size: 1.5rem !important;
+    }
+    
+    .payment-option h5 {
+        font-size: 1rem;
+    }
+    
+    .payment-option small {
+        font-size: 0.75rem;
+    }
+    
+    .price-summary {
+        padding: 15px;
+    }
+    
+    .price-total {
+        font-size: 20px;
+    }
+    
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .qr-code i {
+        font-size: 3rem !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h5 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Responsividade para tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .payment-card {
+        max-width: 600px;
+    }
+}
+
+.payment-option {
+    border: 1px solid var(--colorBlue);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--colorGrayDark);
+}
+
+.payment-option:hover {
+    border-color: var(--colorWhite);
+    transform: translateY(-2px);
+}
+
+.payment-option.active {
+    border: 2px solid var(--colorBlue);
+    background-color: var(--colorBlack);
+}
+
+.payment-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.payment-details {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--colorGrayDark);
+    border-radius: 10px;
+    border: 1px solid var(--colorBlue);
+}
+
+.payment-details.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    background-color: var(--colorWhite);
+    border: 1px solid var(--colorBlue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.btn-confirm {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    border: 1px solid var(--colorBlue);
+    color: var(--colorBlue);
+    background-color: transparent;
+}
+
+.btn-confirm:hover {
+    color: var(--colorBlack);
+    background-image: linear-gradient(to right, var(--colorBlue), var(--colorWhite));
+    font-weight: bold;
+    transition: 0.9s;
+    border: none;
+}
+
+.price-summary {
+    background-color: var(--colorGrayDark);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--colorBlue);
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--colorWhite);
+}
+
+.price-total {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--colorWhite);
+    border-top: 1px solid var(--colorBlue);
+    padding-top: 15px;
+    margin-top: 10px;
+}

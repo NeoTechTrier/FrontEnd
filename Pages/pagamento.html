@@ -1,52 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Style/global.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Style/pagamento.css" />
     <title>Pagamento</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Pagamento</h1>
+  </head>
+  <body>
+    <iframe id="cart-background" src="carrinho.html" aria-hidden="true"></iframe>
+    <div class="payment-card p-4">
+      <h2 class="text-center mb-4">Finalizar Pagamento</h2>
 
-        <div id="lista-produtos"></div>
-
-        <label for="formaPag">Forma de Pagamento:</label>
-        <select name="formaPag" id="formaPag" required>
-            <option value="" disabled selected>Selecione a forma de pagamento</option>
-            <option value="Cartão de Débito">Cartão de Débito</option>
-            <option value="Cartão de Crédito">Cartão de Crédito</option>
-            <option value="Pix">PIX</option>
-        </select>
-
-        <label for="frete">Região de Entrega:</label>
-        <select name="frete" id="frete" required>
-            <option value="" disabled selected>Selecione a Região de entrega</option>
-            <option value="Norte">Norte</option>
-            <option value="Nordeste">Nordeste</option>
-            <option value="Centro-Oeste">Centro-Oeste</option>
-            <option value="Sudeste">Sudeste</option>
-            <option value="Sul">Sul</option>
-        </select>
-
-        <p id="frete-valor" class="frente-info"></p>
-        <button id="confirmar-pagamento">confirmar Pagamento</button>
-    </div>
-
-    <div id="card-confirmarcao" style="display: none;">
-        <div class="card">
-            <h3>Pagamento Confirmado</h3>
-            <div id="resumo-intes"></div>
-            <p>
-                <strong>Forma de Pagamento:</strong>
-                <span id="forma-escolhida"></span>
-            </p>
-            <div id="pix-area"></div>
+      <!-- Resumo do Pedido -->
+      <div class="price-summary">
+        <h5 class="mb-3">Resumo do Pedido</h5>
+        <div class="price-row">
+          <span>Subtotal (Carrinho):</span>
+          <span id="subtotal">R$ 0,00</span>
         </div>
+        <div class="price-row">
+          <span>Frete:</span>
+          <span id="frete">R$ 0,00</span>
+        </div>
+        <div class="price-row price-total">
+          <span>Total:</span>
+          <span id="total">R$ 0,00</span>
+        </div>
+      </div>
+
+      <h5 class="mb-3">Selecione a Forma de Pagamento</h5>
+
+      <div class="payment-option" onclick="selectPayment('pix')">
+        <input type="radio" name="payment" id="pix" value="pix" />
+        <label
+          for="pix"
+          class="d-inline-flex align-items-center w-100"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-qrcode fa-2x me-3 text-primary"></i>
+          <div>
+            <h5 class="mb-0">PIX</h5>
+            <small class="text-muted">Pagamento instantâneo</small>
+          </div>
+        </label>
+      </div>
+
+      <div class="payment-option" onclick="selectPayment('credito')">
+        <input type="radio" name="payment" id="credito" value="credito" />
+        <label
+          for="credito"
+          class="d-inline-flex align-items-center w-100"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-credit-card fa-2x me-3 text-success"></i>
+          <div>
+            <h5 class="mb-0">Cartão de Crédito</h5>
+            <small class="text-muted">Parcelamento disponível</small>
+          </div>
+        </label>
+      </div>
+
+      <div class="payment-option" onclick="selectPayment('debito')">
+        <input type="radio" name="payment" id="debito" value="debito" />
+        <label
+          for="debito"
+          class="d-inline-flex align-items-center w-100"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-money-check fa-2x me-3 text-warning"></i>
+          <div>
+            <h5 class="mb-0">Cartão de Débito</h5>
+            <small class="text-muted">Débito em conta corrente</small>
+          </div>
+        </label>
+      </div>
+
+      <!-- Detalhes PIX -->
+      <div id="pix-details" class="payment-details">
+        <h5 class="text-center mb-3">Escaneie o QR Code</h5>
+        <div class="qr-code">
+          <i class="fas fa-qrcode fa-5x text-secondary"></i>
+        </div>
+        <p class="text-center text-muted small">
+          Abra o aplicativo do seu banco e escaneie o QR Code acima
+        </p>
+        <div class="alert alert-info mb-0">
+          <i class="fas fa-info-circle me-2"></i>
+          O pagamento será confirmado automaticamente
+        </div>
+      </div>
+
+      <!-- Detalhes Cartão de Crédito -->
+      <div id="credito-details" class="payment-details">
+        <div class="text-center">
+          <i class="fas fa-credit-card fa-4x text-success mb-3"></i>
+          <p class="text-muted">
+            Você será redirecionado para inserir os dados do cartão
+          </p>
+          <button
+            class="btn btn-success btn-confirm"
+            onclick="confirmarPagamento('crédito')"
+          >
+            <i class="fas fa-check-circle me-2"></i>Confirmar Pagamento
+          </button>
+        </div>
+      </div>
+
+      <!-- Detalhes Cartão de Débito -->
+      <div id="debito-details" class="payment-details">
+        <div class="text-center">
+          <i class="fas fa-money-check fa-4x text-warning mb-3"></i>
+          <p class="text-muted">
+            Você será redirecionado para inserir os dados do cartão
+          </p>
+          <button
+            class="btn btn-primary btn-confirm"
+            onclick="confirmarPagamento('débito')"
+          >
+            <i class="fas fa-check-circle me-2"></i>Confirmar Pagamento
+          </button>
+        </div>
+      </div>
     </div>
-    
-    <script src="../JS/frete.js"></script>
-</body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../JS/pagamento.js"></script>
+  </body>
 </html>
