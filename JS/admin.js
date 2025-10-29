@@ -311,3 +311,7 @@ document
       alert("Por favor, preencha todos os campos!");
     }
   });
+
+document.getElementById("logoutAdmin").addEventListener("click", () => {
+  localStorage.clear();
+});

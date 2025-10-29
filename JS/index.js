@@ -42,6 +42,19 @@ function exibirProdutos(produtos) {
     descricao.innerText = `${produto.dsProduto}`;
     btnCarrinho.innerText = `Adicionar ao carrinho`;
 
+    btnCarrinho.addEventListener("click", () => {
+      function salvarProduto(cdProduto) {
+        let produtosSalvos =
+          JSON.parse(localStorage.getItem("cdProdutos")) || [];
+        if (!produtosSalvos.includes(cdProduto)) {
+          produtosSalvos.push(cdProduto);
+        }
+        localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
+      }
+      salvarProduto(produto.cdProduto);
+      alert("Produto salvo no carrinho!");
+    });
+
     //Define a ordem dos elementos
     divCard.appendChild(img);
     divCard.appendChild(cardBody);
@@ -201,7 +214,7 @@ document.getElementById("botaoCad").addEventListener("click", function () {
     fetch(urlUsuario, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     })
