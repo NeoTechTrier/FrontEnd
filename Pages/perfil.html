@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../Style/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="../IMG/LogoNTFavicon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header
+      class="p-3 d-flex flex-wrap justify-content-between align-items-center headerFundo"
+    >
+      <a href="logado.html"
+        ><img src="../IMG/LogoNT.png" alt="Logo NT" id="logoImg"
+      /></a>
+      <a id="logout" href="login.html" class="btn btn-outline-primary"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-box-arrow-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"
+          />
+        </svg>
+      </a>
+    </header>
+    <div class="container-fluid fundoGeral min-vh-100">
+      <div class="container p-5 fundoGeral min-vh-100">
+        <form class="text-center fw-bold">
+          <label for="nmCliente">NOME</label>
+          <input
+            type="text"
+            name="nmCliente"
+            id="nmCliente"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="dsEmail">EMAIL</label>
+          <input
+            type="text"
+            name="dsEmail"
+            id="dsEmail"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="nuCPF">CPF</label>
+          <input
+            type="text"
+            name="nuCPF"
+            id="nuCPF"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="nuTelefone">TELEFONE</label>
+          <input
+            type="text"
+            name="nuTelefone"
+            id="nuTelefone"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="nuRG">RG</label>
+          <input
+            type="text"
+            name="nuRG"
+            id="nuRG"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="dsCidade">CIDADE</label>
+          <input
+            type="text"
+            name="dsCidade"
+            id="dsCidade"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="dsEstado">ESTADO</label>
+          <input
+            type="text"
+            name="dsEstado"
+            id="dsEstado"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="dsEndereco">ENDEREÇO</label>
+          <input
+            type="text"
+            name="dsEndereco"
+            id="dsEndereco"
+            class="form-control mb-5 inputsAll"
+          />
+          <label for="nuEndereco">NÚMERO</label>
+          <input
+            type="text"
+            name="nuEndereco"
+            id="nuEndereco"
+            class="form-control mb-5 inputsAll"
+          />
+
+          <button
+            id="editarModal"
+            type="button"
+            class="btn btnCad fw-bold w-50 mb-3"
+          >
+            EDITAR
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAviso" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-header fundoGeral">
+          <button
+            type="button"
+            class="btn btn-light"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            FECHAR
+          </button>
+        </div>
+        <div class="modal-content">
+          <div class="modal-body fundoGeral text-center fw-bold">
+            <p>Tem certeza?</p>
+          </div>
+          <div class="modal-footer fundoGeral">
+            <button
+              type="button"
+              class="btn btn-danger mx-auto"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              CANCELAR
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary mx-auto"
+              id="botaoEditar"
+            >
+              SALVAR MUDANÇAS
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../JS/perfil.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

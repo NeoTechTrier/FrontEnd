@@ -35,6 +35,7 @@ const btnLogin = document
           }
 
           localStorage.setItem("token", token);
+          localStorage.setItem("cdUsuario", data.cdUsuario);
           alert("Login realizado com sucesso!");
 
           if (data.userRole === "USER") {

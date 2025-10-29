@@ -40,13 +40,12 @@ function exibirUsuario(usuarios) {
   });
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  fetch(urlUsuario,{
+  fetch(urlUsuario, {
     method: "GET",
-    headers: { Authorization: `Bearer ${token}` }
-}) 
+    headers: { Authorization: `Bearer ${token}` },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erro ao buscar usuários\n" + ` ${response.status}`);
@@ -71,8 +70,9 @@ function exibirEstoque(estoques) {
     //Define quais elementos devem ser criados
     const divCard = document.createElement("div");
     const cardBody = document.createElement("div");
-    //const codigoProduto = document.createElement("p");
+    const codigoProduto = document.createElement("p");
     const cdEstoque = document.createElement("p");
+    const nmProduto = document.createElement("p");
     const qtdEstoqueProduto = document.createElement("p");
     const flAtivoEstoque = document.createElement("p");
 
@@ -80,20 +80,23 @@ function exibirEstoque(estoques) {
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
     cdEstoque.classList = "text-center text-light fw-bold my-1";
-    //codigoProduto.classList = "text-primary fw-bold my-1";
+    codigoProduto.classList = "text-primary fw-bold my-1";
+    nmProduto.classList = "text-primary fw-bold my-1";
     qtdEstoqueProduto.classList = "text-primary fw-bold my-1";
     flAtivoEstoque.classList = "text-primary fw-bold my-1";
 
     //Define os dados a serem renderizados
     cdEstoque.innerText = `CÓDIGO ESTOQUE: ${estoque.cdEstoque}`;
-    //codigoProduto.innerText = `CÓDIGO PRODUTO: ${estoque.cdProduto}`;
+    codigoProduto.innerText = `CÓDIGO PRODUTO: ${estoque.cdProduto}`;
+    nmProduto.innerText = `NOME PRODUTO: ${estoque.nmProduto}`;
     qtdEstoqueProduto.innerText = `QUANTIDADE: ${estoque.qtdEstoqueProduto}`;
     flAtivoEstoque.innerText = `ATIVO: ${estoque.flAtivo}`;
 
     //Define a ordem dos elementos
     divCard.appendChild(cardBody);
     cardBody.appendChild(cdEstoque);
-    //cardBody.appendChild(codigoProduto);
+    cardBody.appendChild(codigoProduto);
+    cardBody.appendChild(nmProduto);
     cardBody.appendChild(qtdEstoqueProduto);
     cardBody.appendChild(flAtivoEstoque);
     mainEstoque.appendChild(divCard);
