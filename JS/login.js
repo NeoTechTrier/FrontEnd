@@ -36,13 +36,14 @@ const btnLogin = document
 
           localStorage.setItem("token", token);
           localStorage.setItem("cdUsuario", data.cdUsuario);
-          alert("Login realizado com sucesso!");
+          localStorage.setItem("dsEstado", data.dsEstado);
 
           if (data.userRole === "USER") {
             window.location.href = "logado.html";
           } else if (data.userRole === "ADMIN") {
             window.location.href = "homeAdmin.html";
           }
+          alert("Login realizado com sucesso!");
         })
         .catch((error) => {
           alert(`Erro: ${error.message}`);

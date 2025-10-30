@@ -17,7 +17,15 @@ function exibirProdutos(produtos) {
     const categoria = document.createElement("span");
     const valor = document.createElement("p");
     const descricao = document.createElement("p");
+    const qntProduto = document.createElement("p");
     const btnCarrinho = document.createElement("a");
+
+    const inputQt = document.createElement("input");
+
+    // novos elementos do input-group
+    const inputGroup = document.createElement("div");
+    const btnMenos = document.createElement("button");
+    const btnMais = document.createElement("button");
 
     //Define as listas de classes dos elementos para os cards
     div.classList = "px-5 pb-3";
@@ -26,8 +34,21 @@ function exibirProdutos(produtos) {
     img.classList = "card-img-top";
     title.classList = "fw-bold";
     categoria.classList = "badge px-3 py-1";
+    qntProduto.classList = "badge px-3 py-1";
     valor.classList = "text-primary fw-bold my-1";
     btnCarrinho.classList = "btn btn-outline-primary w-100 mx-auto cardBtn";
+    inputQt.classList =
+      "inputCard text-center text-dark w-75 border border-primary mb-2 rounded-2";
+    inputGroup.classList =
+      "d-flex align-items-center justify-content-center gap-2 mt-2 flex-row flex-nowrap";
+
+    // classes novas para o input-group
+    inputGroup.classList = "input-group mb-2";
+    btnMenos.classList = "btn btn-outline-primary";
+    btnMais.classList = "btn btn-outline-primary";
+
+    btnMenos.innerText = "-";
+    btnMais.innerText = "+";
 
     console.log(produto);
 
@@ -40,7 +61,16 @@ function exibirProdutos(produtos) {
     categoria.innerText = `${produto.dsCategoria}`;
     valor.innerText = `R$ ${produto.vlProduto}`;
     descricao.innerText = `${produto.dsProduto}`;
+    qntProduto.innerText = `Estoque: ${produto.qtdEstoqueProduto}`;
     btnCarrinho.innerText = `Adicionar ao carrinho`;
+    inputQt.min = "1";
+    inputQt.type = "Number";
+    inputQt.id = `inputQt_${produto.cdProduto}`;
+
+    // estrutura do input-group
+    inputGroup.appendChild(btnMenos);
+    inputGroup.appendChild(inputQt);
+    inputGroup.appendChild(btnMais);
 
     btnCarrinho.addEventListener("click", () => {
       function salvarProduto(cdProduto) {
@@ -50,10 +80,32 @@ function exibirProdutos(produtos) {
           produtosSalvos.push(cdProduto);
         }
         localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
+        localStorage.setItem("vlProduto:", JSON.stringify(produto.vlProduto));
       }
       salvarProduto(produto.cdProduto);
-      alert("Produto salvo no carrinho!");
+      alert("Produto salvo no carrinho!" + produto.nmProduto);
     });
+
+    // eventos para alterar e salvar quantidade
+    btnMenos.addEventListener("click", () => {
+      let valorAtual = parseInt(inputQt.value) || 0;
+      if (valorAtual > 0) valorAtual--;
+      inputQt.value = valorAtual;
+      localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
+    });
+
+    btnMais.addEventListener("click", () => {
+      let valorAtual = parseInt(inputQt.value) || 0;
+      valorAtual++;
+      inputQt.value = valorAtual;
+      localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
+    });
+
+    inputQt.addEventListener("input", () => {
+      localStorage.setItem(`qtItem: ${produto.cdProduto}`, inputQt.value);
+    });
+
+    //Salvar vl pedido
 
     //Define a ordem dos elementos
     divCard.appendChild(img);
@@ -62,9 +114,16 @@ function exibirProdutos(produtos) {
     cardBody.appendChild(categoria);
     cardBody.appendChild(valor);
     cardBody.appendChild(descricao);
+    cardBody.appendChild(qntProduto);
     divCard.appendChild(div);
+    cardBody.appendChild(inputGroup);
     div.appendChild(btnCarrinho);
     mainProdutos.appendChild(divCard);
+
+    const inputQtd = document.getElementById(
+      `inputQt_${produto.cdProduto}`
+    ).value;
+    localStorage.setItem(`qtItem_${produto.cdProduto}`, inputQtd);
   });
 }
 
