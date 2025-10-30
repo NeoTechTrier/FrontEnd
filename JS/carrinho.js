@@ -1,7 +1,6 @@
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 let freteValor = 0;
 
-
 const valoresFrete = {
     'Norte': 45.00,
     'Nordeste': 40.00,
@@ -11,6 +10,10 @@ const valoresFrete = {
 };
 
 // Itens do carrinho
+/* ======= Renderização do carrinho =======
+   - `renderizarCarrinho()` monta o HTML dos itens
+   - Se não houver itens, mostra mensagem e link para produtos
+*/
 function renderizarCarrinho() {
     const cartItemsDiv = document.getElementById('cartItems');
     
@@ -96,6 +99,9 @@ function calcularTotalItens() {
     return carrinho.reduce((total, item) => total + item.quantidade, 0);
 }
 
+/* ======= Cálculos do resumo (subtotal / total de itens / total final) =======
+   - atualizarResumo() atualiza os elementos do DOM: #subtotal, #totalItems, #total
+*/
 function atualizarResumo() {
     const subtotal = calcularSubtotal();
     const totalItens = calcularTotalItens();

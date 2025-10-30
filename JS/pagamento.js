@@ -1,13 +1,16 @@
 
 
+// dados de exemplo (substituir pelo carrinho real quando integrar)
 const carrinho = [
     { nome: 'Produto 1', preco: 89.90 },
     { nome: 'Produto 2', preco: 149.00 },
     { nome: 'Produto 3', preco: 59.90 }
 ];
 
+// frete fixo de exemplo
 const valorFrete = 25.00;
 
+// calcula subtotal e total e atualiza o DOM
 function calcularValores() {
     const subtotal = carrinho.reduce((acc, item) => acc + item.preco, 0);
     const total = subtotal + valorFrete;
@@ -19,6 +22,7 @@ function calcularValores() {
 
 calcularValores();
 
+// seleciona o método de pagamento e abre o painel de detalhes correspondente
 function selectPayment(type) {
     document.querySelectorAll('.payment-option').forEach(opt => {
         opt.classList.remove('active');
@@ -34,6 +38,7 @@ function selectPayment(type) {
     document.getElementById(`${type}-details`).classList.add('active');
 }
 
+// mostra modal de sucesso (simula confirmação de pagamento)
 function confirmarPagamento(tipo) {
     const total = document.getElementById('total').textContent;
     
