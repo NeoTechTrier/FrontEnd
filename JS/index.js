@@ -126,6 +126,7 @@ function exibirProdutos(produtos) {
       `inputQt_${produto.cdProduto}`
     ).value;
     localStorage.setItem(`qtItem_${produto.cdProduto}`, inputQtd);
+    localStorage.setItem(`vlProduto_${produto.cdProduto}`, produto.vlProduto);
   });
 }
 
