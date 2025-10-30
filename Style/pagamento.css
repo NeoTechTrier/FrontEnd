@@ -1,108 +1,37 @@
-:root {
-    --colorGrayDark: #212121;
-    --colorGraylight: #414141;
-    --colorBlack: #000000;
-    --colorWhite: #ffffff;
-    --colorBlue: #0d6efd;
-}
+/* Usar as variáveis definidas em global.css para manter o mesmo tema da home */
+/* pagamento.css
+   ----------------
+   Estilos específicos para a página de pagamento.
 
+   Observações de uso:
+   - Este arquivo é carregado depois de `global.css` para aproveitar
+     as variáveis de cor (por exemplo, --colorGrayDark, --colorBlue).
+   - Mantemos contraste adequado para legibilidade em tema escuro.
+*/
+
+/* Layout base da página de pagamento */
 body {
     background-color: var(--colorGrayDark);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    margin: 0;
+    padding: 20px;
     color: var(--colorWhite);
-    position: relative;
-    overflow: hidden;
 }
 
-#cart-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.09;
-    pointer-events: none;
-    border: 0;
-    /* Usa iframe como fundo: aplica blur e reduz saturação para não competir com o conteúdo */
-    filter: blur(6px) saturate(0.6);
-    transform: scale(1.03);
-}
-
+/* Card principal que contém o formulário/ opções de pagamento */
 .payment-card {
     background-color: var(--colorGraylight);
     border-radius: 15px;
     box-shadow: -4px 5px 5px rgba(0, 0, 0, 0.274);
     max-width: 500px;
     width: 100%;
-    margin: auto;
+    color: var(--colorWhite);
+    border: 1px solid var(--colorGrayDark);
 }
 
-/* Responsividade para mobile */
-@media (max-width: 576px) {
-    body {
-        padding: 10px;
-    }
-    
-    .payment-card {
-        border-radius: 10px;
-        padding: 15px !important;
-    }
-    
-    .payment-option {
-        padding: 15px;
-    }
-    
-    .payment-option i {
-        font-size: 1.5rem !important;
-    }
-    
-    .payment-option h5 {
-        font-size: 1rem;
-    }
-    
-    .payment-option small {
-        font-size: 0.75rem;
-    }
-    
-    .price-summary {
-        padding: 15px;
-    }
-    
-    .price-total {
-        font-size: 20px;
-    }
-    
-    .qr-code {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .qr-code i {
-        font-size: 3rem !important;
-    }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-    
-    h5 {
-        font-size: 1.1rem;
-    }
-}
-
-/* Responsividade para tablets */
-@media (min-width: 577px) and (max-width: 768px) {
-    .payment-card {
-        max-width: 600px;
-    }
-}
-
+/* Opções de pagamento (PIX, crédito, débito) */
 .payment-option {
     border: 1px solid var(--colorBlue);
     border-radius: 10px;
@@ -128,6 +57,7 @@ body {
 }
 
 .payment-details {
+    /* Painel que aparece quando uma opção é selecionada */
     display: none;
     margin-top: 20px;
     padding: 20px;
@@ -153,6 +83,7 @@ body {
 }
 
 .qr-code {
+    /* Container do QR code para pagamentos PIX */
     width: 200px;
     height: 200px;
     background-color: var(--colorWhite);
@@ -165,6 +96,7 @@ body {
 }
 
 .btn-confirm {
+    /* Botões de confirmação dentro dos painéis (local) */
     width: 100%;
     padding: 12px;
     font-size: 18px;
@@ -175,15 +107,8 @@ body {
     background-color: transparent;
 }
 
-.btn-confirm:hover {
-    color: var(--colorBlack);
-    background-image: linear-gradient(to right, var(--colorBlue), var(--colorWhite));
-    font-weight: bold;
-    transition: 0.9s;
-    border: none;
-}
-
 .price-summary {
+    /* Bloco que exibe subtotal/frete/total */
     background-color: var(--colorGrayDark);
     border-radius: 10px;
     padding: 20px;
@@ -195,10 +120,10 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: var(--colorWhite);
 }
 
 .price-total {
+    /* Estilo do total final */
     font-size: 24px;
     font-weight: bold;
     color: var(--colorWhite);
