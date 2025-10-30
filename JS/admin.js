@@ -315,3 +315,5 @@ document
 document.getElementById("logoutAdmin").addEventListener("click", () => {
   localStorage.clear();
 });
+
+/*------------------------------------------------------------------------------------------------------*/

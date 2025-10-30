@@ -32,18 +32,19 @@ function exibirProdutos(produtos) {
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
     img.classList = "card-img-top";
-    title.classList = "fw-bold";
+    title.classList = "text-white fw-bold";
     categoria.classList = "badge px-3 py-1";
     qntProduto.classList = "badge px-3 py-1";
     valor.classList = "text-primary fw-bold my-1";
     btnCarrinho.classList = "btn btn-outline-primary w-100 mx-auto cardBtn";
-    inputQt.classList =
-      "inputCard text-center text-dark w-75 border border-primary mb-2 rounded-2";
+
     inputGroup.classList =
       "d-flex align-items-center justify-content-center gap-2 mt-2 flex-row flex-nowrap";
 
     // classes novas para o input-group
     inputGroup.classList = "input-group mb-2";
+    inputQt.classList =
+      "fundoGeral text-center text-white border border-primary";
     btnMenos.classList = "btn btn-outline-primary";
     btnMais.classList = "btn btn-outline-primary";
 

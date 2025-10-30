@@ -8,7 +8,7 @@
 
 :root {
   --colorGrayDark: #212121;
-  --colorGraylight: #414141;
+  --colorGraylight: #121212;
   --colorBlack: #000000;
   --colorWhite: #ffffff;
   --colorBlue: #0d6efd;
@@ -174,7 +174,16 @@ a {
   transition: 0.9s;
   border: none;
 }
-
+#cardBodyEmpresa {
+  height: 450px !important;
+}
+.textColor {
+  color: gray;
+}
+/*Classe para textos do visualizar empresa*/
+.textGeral {
+  border-bottom: 2px solid black;
+}
 /*MEDIA QUERYS*/
 @media screen and (min-width: 768px) {
   #busca {
