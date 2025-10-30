@@ -85,15 +85,17 @@ function exibirProdutos(produtos) {
     }
 
     btnMenos.addEventListener("click", () => {
-      let valorAtual = localStorage.getItem("qtItem");
-      valorAtual--;
-      inputQt.value = valorAtual;
-      localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
+      let valorAtual = Number(inputQt.value);
+      if (valorAtual > 1) {
+        valorAtual--;
+        inputQt.value = valorAtual;
+        localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
+      }
       atualizarTotal();
     });
 
     btnMais.addEventListener("click", () => {
-      let valorAtual = localStorage.getItem("qtItem") || 1;
+      let valorAtual = Number(inputQt.value);
       valorAtual++;
       inputQt.value = valorAtual;
       localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
@@ -125,6 +127,7 @@ function exibirProdutos(produtos) {
   total.classList = "text-white mt-5 fw-bold text-center";
   total.id = "totalCarrinho";
   total.innerText = `Total: R$ ${valorTotal.toFixed(2)}`;
+
   mainProdutos.appendChild(total);
 }
 

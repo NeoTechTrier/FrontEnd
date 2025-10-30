@@ -80,7 +80,7 @@ function exibirProdutos(produtos) {
           produtosSalvos.push(cdProduto);
         }
         localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
-        localStorage.setItem("vlProduto:", JSON.stringify(produto.vlProduto));
+        localStorage.setItem("vlProduto", JSON.stringify(produto.vlProduto));
       }
       salvarProduto(produto.cdProduto);
       alert("Produto salvo no carrinho!" + produto.nmProduto);
@@ -89,9 +89,11 @@ function exibirProdutos(produtos) {
     // eventos para alterar e salvar quantidade
     btnMenos.addEventListener("click", () => {
       let valorAtual = parseInt(inputQt.value) || 0;
-      if (valorAtual > 0) valorAtual--;
-      inputQt.value = valorAtual;
-      localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
+      if (valorAtual > 0) {
+        valorAtual--;
+        inputQt.value = valorAtual;
+        localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
+      }
     });
 
     btnMais.addEventListener("click", () => {
