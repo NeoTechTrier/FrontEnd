@@ -80,13 +80,23 @@
     <div class="modal" id="modalEditEstoque" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
+          <div class="modal-header fundoGeral">
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              X
+            </button>
+          </div>
           <div class="modal-body fundoGeral text-center fw-bold">
-            <p>Tem certeza?</p>
+            <p>TEM CERTEZA ?</p>
           </div>
           <div class="modal-footer fundoGeral">
             <button
               type="button"
-              class="btn btn-danger mx-auto"
+              class="btn btn-outline-danger mx-auto"
               data-bs-dismiss="modal"
               aria-label="Close"
             >
@@ -96,6 +106,8 @@
               type="button"
               class="btn btn-primary mx-auto"
               id="botaoEditar"
+              data-bs-dismiss="modal"
+              aria-label="Close"
             >
               SALVAR MUDANÇAS
             </button>

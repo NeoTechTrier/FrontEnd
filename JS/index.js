@@ -73,43 +73,49 @@ function exibirProdutos(produtos) {
     inputGroup.appendChild(inputQt);
     inputGroup.appendChild(btnMais);
 
-    btnCarrinho.addEventListener("click", () => {
-      function salvarProduto(cdProduto) {
-        let produtosSalvos =
-          JSON.parse(localStorage.getItem("cdProdutos")) || [];
-        if (!produtosSalvos.includes(cdProduto)) {
-          produtosSalvos.push(cdProduto);
+    if (produto.qtdEstoqueProduto <= 0) {
+      btnCarrinho.innerText = "Sem estoque";
+      btnCarrinho.classList = "btn btn-outline-primary w-100 mx-auto";
+
+      btnMais.disabled = true;
+      btnMenos.disabled = true;
+      inputQt.disabled = true;
+    } else {
+      btnCarrinho.addEventListener("click", () => {
+        function salvarProduto(cdProduto) {
+          let produtosSalvos =
+            JSON.parse(localStorage.getItem("cdProdutos")) || [];
+          if (!produtosSalvos.includes(cdProduto)) {
+            produtosSalvos.push(cdProduto);
+          }
+          localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
+          localStorage.setItem("vlProduto", JSON.stringify(produto.vlProduto));
         }
-        localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
-        localStorage.setItem("vlProduto", JSON.stringify(produto.vlProduto));
-      }
-      salvarProduto(produto.cdProduto);
-      alert("Produto salvo no carrinho!" + produto.nmProduto);
-    });
+        salvarProduto(produto.cdProduto);
+        alert("Produto salvo no carrinho!" + produto.nmProduto);
+      });
 
-    // eventos para alterar e salvar quantidade
-    btnMenos.addEventListener("click", () => {
-      let valorAtual = parseInt(inputQt.value) || 0;
-      if (valorAtual > 0) {
-        valorAtual--;
+      // eventos para alterar e salvar quantidade
+      btnMenos.addEventListener("click", () => {
+        let valorAtual = parseInt(inputQt.value) || 0;
+        if (valorAtual > 0) {
+          valorAtual--;
+          inputQt.value = valorAtual;
+          localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
+        }
+      });
+
+      btnMais.addEventListener("click", () => {
+        let valorAtual = parseInt(inputQt.value) || 0;
+        valorAtual++;
         inputQt.value = valorAtual;
-        localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
-      }
-    });
+        localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
+      });
 
-    btnMais.addEventListener("click", () => {
-      let valorAtual = parseInt(inputQt.value) || 0;
-      valorAtual++;
-      inputQt.value = valorAtual;
-      localStorage.setItem(`qtItem: ${produto.cdProduto}`, valorAtual);
-    });
-
-    inputQt.addEventListener("input", () => {
-      localStorage.setItem(`qtItem: ${produto.cdProduto}`, inputQt.value);
-    });
-
-    //Salvar vl pedido
-
+      inputQt.addEventListener("input", () => {
+        localStorage.setItem(`qtItem_${produto.cdProduto}`, inputQt.value);
+      });
+    }
     //Define a ordem dos elementos
     divCard.appendChild(img);
     divCard.appendChild(cardBody);

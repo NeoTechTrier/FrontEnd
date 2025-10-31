@@ -152,7 +152,7 @@ a {
 .bodyCard,
 .cardCarrinho {
   width: 100%;
-  height: 200px;
+  height: 250px;
 }
 .badge {
   background-color: var(--colorGrayDark) !important;

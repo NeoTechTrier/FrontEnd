@@ -38,12 +38,12 @@
         <!--Produtos são carregados aqui dinamicamente-->
       </div>
       <div
-        class="container my-0 py-5 d-flex flex-column justify-content-center align-items-center flex-nowrap"
-        id="finalizarCompra"
+        class="my-0 d-flex flex-column justify-content-center align-items-center flex-nowrap"
+        id="pagamentoCompra"
       ></div>
       <div
-        class="container my-0 py-5 d-flex flex-column justify-content-center align-items-center flex-nowrap"
-        id="pagamentoCompra"
+        class="my-0 pb-5 d-flex flex-column justify-content-center align-items-center flex-nowrap"
+        id="finalizarCompra"
       ></div>
     </div>
 
@@ -51,21 +51,33 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header fundoGeral">
-            <h5 class="modal-title text-center">FINALIZAR COMPRA</h5>
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              X
+            </button>
           </div>
           <div class="modal-body fundoGeral">
-            <p>Modal body text goes here.</p>
+            <h5 class="modal-title text-center mx-auto">FINALIZAR COMPRA</h5>
           </div>
           <div class="modal-footer fundoGeral">
-            <button type="button" class="btn btn-primary" id="cadItem">
-              Finalizar Compra
+            <button
+              type="button"
+              class="btn btn-outline-danger mx-auto"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              CANCELAR
             </button>
             <button
               type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
+              class="btn btn-outline-primary mx-auto"
+              id="cadItem"
             >
-              Close
+              Finalizar Compra
             </button>
           </div>
         </div>

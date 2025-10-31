@@ -6,121 +6,126 @@ function exibirProdutos(produtos) {
   let valorTotal = 0;
 
   produtos.forEach((produto) => {
-    const div = document.createElement("div");
-    const divCard = document.createElement("div");
-    const cardBody = document.createElement("div");
-    const img = document.createElement("img");
-    const title = document.createElement("h5");
-    const categoria = document.createElement("p");
-    const valor = document.createElement("p");
-    const descricao = document.createElement("p");
-    const btnExcluir = document.createElement("a");
-    const inputQt = document.createElement("input");
-    const inputGroup = document.createElement("div");
-    const btnMenos = document.createElement("button");
-    const btnMais = document.createElement("button");
+    if (produto.qtdEstoqueProduto <= 0) {
+      return;
+    } else {
+      const div = document.createElement("div");
+      const divCard = document.createElement("div");
+      const cardBody = document.createElement("div");
+      const img = document.createElement("img");
+      const title = document.createElement("h5");
+      const categoria = document.createElement("p");
+      const valor = document.createElement("p");
+      const descricao = document.createElement("p");
+      const btnExcluir = document.createElement("a");
+      const inputQt = document.createElement("input");
+      const inputGroup = document.createElement("div");
+      const qntProduto = document.createElement("p");
+      const btnMenos = document.createElement("button");
+      const btnMais = document.createElement("button");
 
-    div.classList = "px-5 pb-3";
-    divCard.classList =
-      "card cardCarrinho d-flex flex-row flex-nowrap justify-content-center align-items-center my-3 rounded-2 shadow-sm";
-    cardBody.classList = "card-body bodyCard text-center";
-    img.classList = "imgCarrinho rounded-2";
-    title.classList = "fw-bold";
-    categoria.classList = "badge px-3 py-1 bg-primary text-white";
-    valor.classList = "text-primary fw-bold my-1 vlProduto";
-    btnExcluir.classList =
-      "btn btn-outline-danger w-100 mx-auto mt-2 rounded-2 fw-bold";
-    inputQt.classList = "form-control text-center border-primary fw-bold";
+      div.classList = "px-5 pb-3";
+      divCard.classList =
+        "card cardCarrinho d-flex flex-row flex-nowrap justify-content-center align-items-center my-3 rounded-2 shadow-sm";
+      cardBody.classList = "card-body bodyCard text-center";
+      img.classList = "imgCarrinho rounded-2";
+      title.classList = "fw-bold";
+      categoria.classList = "badge px-3 py-1 bg-primary text-white";
+      valor.classList = "text-primary fw-bold my-1 vlProduto";
+      btnExcluir.classList =
+        "btn btn-outline-danger w-100 mx-auto mt-2 rounded-2 fw-bold";
+      inputQt.classList = "form-control text-center border-primary fw-bold";
 
-    inputGroup.classList =
-      "d-flex align-items-center justify-content-center gap-2 mt-2";
-    btnMenos.classList = "btn btn-primary rounded-2 px-3 py-1 fw-bold";
-    btnMais.classList = "btn btn-primary rounded-2 px-3 py-1 fw-bold";
-    btnMenos.innerText = "-";
-    btnMais.innerText = "+";
+      inputGroup.classList =
+        "d-flex align-items-center justify-content-center gap-2 mt-2";
+      btnMenos.classList = "btn btn-primary rounded-2 px-3 py-1 fw-bold";
+      btnMais.classList = "btn btn-primary rounded-2 px-3 py-1 fw-bold";
+      qntProduto.classList = "badge px-3 py-1 qtEstoque";
 
-    img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
-    img.alt = produto.nmProduto;
+      btnMenos.innerText = "-";
+      btnMais.innerText = "+";
 
-    title.innerText = `${produto.nmProduto}`;
-    categoria.innerText = `${produto.dsCategoria}`;
-    valor.innerText = `R$ ${produto.vlProduto}`;
-    descricao.innerText = `${produto.dsProduto}`;
-    btnExcluir.innerText = `Excluir`;
-    inputQt.type = "number";
-    inputQt.id = `inputQt_${produto.cdProduto}`;
+      img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
+      img.alt = produto.nmProduto;
 
-    const qtdSalva =
-      Number(localStorage.getItem(`qtItem_${produto.cdProduto}`)) || 1;
-    inputQt.value = qtdSalva;
+      title.innerText = `${produto.nmProduto}`;
+      categoria.innerText = `${produto.dsCategoria}`;
+      valor.innerText = `R$ ${produto.vlProduto}`;
+      descricao.innerText = `${produto.dsProduto}`;
+      qntProduto.innerText = `Estoque: ${produto.qtdEstoqueProduto}`;
 
-    inputGroup.appendChild(btnMenos);
-    inputGroup.appendChild(inputQt);
-    inputGroup.appendChild(btnMais);
+      btnExcluir.innerText = `Excluir`;
+      inputQt.type = "number";
+      inputQt.id = `inputQt_${produto.cdProduto}`;
 
-    function excluirCarrinho(cdProduto) {
-      let produtosSalvos = JSON.parse(localStorage.getItem("cdProdutos")) || [];
-      produtosSalvos = produtosSalvos.filter((id) => id !== cdProduto);
-      localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
-      exibirProdutosSalvos();
-    }
+      const qtdSalva =
+        Number(localStorage.getItem(`qtItem_${produto.cdProduto}`)) || 1;
+      inputQt.value = qtdSalva;
 
-    btnExcluir.addEventListener("click", () => {
-      excluirCarrinho(produto.cdProduto);
-    });
+      inputGroup.appendChild(btnMenos);
+      inputGroup.appendChild(inputQt);
+      inputGroup.appendChild(btnMais);
 
-    function atualizarTotal() {
-      let novoTotal = 0;
-      produtos.forEach((p) => {
-        const qtd =
-          parseInt(localStorage.getItem(`qtItem_${p.cdProduto}`)) || 1;
-        novoTotal += Number(p.vlProduto) * qtd;
-      });
-      localStorage.setItem("valorPedido", novoTotal);
-      const totalElement = document.querySelector("#totalCarrinho");
-      if (totalElement) {
-        totalElement.innerText = `Total: R$ ${novoTotal.toFixed(2)}`;
+      function excluirCarrinho(cdProduto) {
+        let produtosSalvos =
+          JSON.parse(localStorage.getItem("cdProdutos")) || [];
+        produtosSalvos = produtosSalvos.filter((id) => id !== cdProduto);
+        localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
+        exibirProdutosSalvos();
       }
-    }
 
-    btnMenos.addEventListener("click", () => {
-      let valorAtual = Number(inputQt.value);
-      if (valorAtual > 1) {
-        valorAtual--;
+      btnExcluir.addEventListener("click", () => {
+        excluirCarrinho(produto.cdProduto);
+      });
+
+      function atualizarTotal() {
+        let novoTotal = 0;
+        produtos.forEach((p) => {
+          const qtd =
+            parseInt(localStorage.getItem(`qtItem_${p.cdProduto}`)) || 1;
+          novoTotal += Number(p.vlProduto) * qtd;
+        });
+      }
+
+      btnMenos.addEventListener("click", () => {
+        let valorAtual = Number(inputQt.value);
+        if (valorAtual > 1) {
+          valorAtual--;
+          inputQt.value = valorAtual;
+          localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
+        }
+        atualizarTotal();
+      });
+
+      btnMais.addEventListener("click", () => {
+        let valorAtual = Number(inputQt.value);
+        valorAtual++;
         inputQt.value = valorAtual;
         localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
-      }
-      atualizarTotal();
-    });
+        atualizarTotal();
+      });
 
-    btnMais.addEventListener("click", () => {
-      let valorAtual = Number(inputQt.value);
-      valorAtual++;
-      inputQt.value = valorAtual;
-      localStorage.setItem(`qtItem_${produto.cdProduto}`, valorAtual);
-      atualizarTotal();
-    });
+      inputQt.addEventListener("input", () => {
+        const val = parseInt(inputQt.value) || 1;
+        localStorage.setItem(`qtItem_${produto.cdProduto}`, val);
+        atualizarTotal();
+      });
 
-    inputQt.addEventListener("input", () => {
-      const val = parseInt(inputQt.value) || 1;
-      localStorage.setItem(`qtItem_${produto.cdProduto}`, val);
-      atualizarTotal();
-    });
+      divCard.appendChild(img);
+      divCard.appendChild(cardBody);
+      cardBody.appendChild(title);
+      cardBody.appendChild(categoria);
+      cardBody.appendChild(valor);
+      cardBody.appendChild(descricao);
+      cardBody.appendChild(qntProduto);
+      cardBody.appendChild(inputGroup);
+      div.appendChild(btnExcluir);
+      divCard.appendChild(div);
+      mainProdutos.appendChild(divCard);
 
-    divCard.appendChild(img);
-    divCard.appendChild(cardBody);
-    cardBody.appendChild(title);
-    cardBody.appendChild(categoria);
-    cardBody.appendChild(valor);
-    cardBody.appendChild(descricao);
-    cardBody.appendChild(inputGroup);
-    div.appendChild(btnExcluir);
-    divCard.appendChild(div);
-    mainProdutos.appendChild(divCard);
-
-    valorTotal += Number(produto.vlProduto) * qtdSalva;
+      valorTotal += Number(produto.vlProduto) * qtdSalva;
+    }
   });
-
   localStorage.setItem("valorPedido", valorTotal);
   const total = document.createElement("h4");
   total.classList = "text-white mt-5 fw-bold text-center";
@@ -159,19 +164,25 @@ function exibirProdutosSalvos() {
     finalizarCompra.innerHTML = "";
 
     const btnFinalizar = document.createElement("a");
+    const lblFormaPag = document.createElement("p");
     const selectPagamento = document.createElement("select");
     const PIX = document.createElement("option");
     const CARTAO = document.createElement("option");
 
     btnFinalizar.classList =
-      "btn btn-outline-primary w-50 mx-auto mt-5 btnFinalizar fw-bold";
+      "btn btn-outline-primary w-50 mx-auto mt-3 btnFinalizar fw-bold";
+    selectPagamento.classList =
+      "form-control w-50 mx-auto fw-bold border border-primary bg-dark text-center text-primary";
+    lblFormaPag.classList = "text-white fw-bold mb-2 text-center";
+
+    lblFormaPag.innerText = "Selecione a forma de pagamento";
     btnFinalizar.innerText = `Finalizar Compra`;
-    selectPagamento.classList = "form-control w-50 my-3 mx-auto";
     PIX.innerText = `Pix`;
     CARTAO.innerText = `Cartão`;
 
     selectPagamento.appendChild(PIX);
     selectPagamento.appendChild(CARTAO);
+    pagamentoCompra.appendChild(lblFormaPag);
     pagamentoCompra.appendChild(selectPagamento);
     finalizarCompra.appendChild(btnFinalizar);
 
@@ -249,11 +260,11 @@ document.getElementById("cadItem").addEventListener("click", () => {
   const cdPedido = localStorage.getItem("cdPedido");
   const cdProduto = JSON.parse(localStorage.getItem("cdProdutos"));
 
-  const qtItens = cdProduto.map(
-    (id) => parseInt(localStorage.getItem(`qtItem_${id}`)) || 1
+  const qtItens = cdProduto.map((id) =>
+    parseInt(localStorage.getItem(`qtItem_${id}`))
   );
-  const vlProdutoItem = cdProduto.map(
-    (id) => parseFloat(localStorage.getItem(`vlProduto_${id}`)) || 1
+  const vlProdutoItem = cdProduto.map((id) =>
+    parseFloat(localStorage.getItem(`vlProduto_${id}`))
   );
   const token = localStorage.getItem("token");
 

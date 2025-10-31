@@ -142,15 +142,17 @@ function exibirProdutos(produtos) {
     const valor = document.createElement("p");
     const descricao = document.createElement("p");
     const btnCarrinho = document.createElement("a");
+    const qntProduto = document.createElement("p");
 
     //Define as listas de classes dos elementos para os cards
     div.classList = "px-5 pb-3";
     divCard.classList = "card my-3 mx-auto rounded-4";
-    cardBody.classList = "card-body";
+    cardBody.classList = "card-body text-center";
     img.classList = "card-img-top";
     title.classList = "fw-bold";
     categoria.classList = "badge px-3 py-1";
     valor.classList = "text-primary fw-bold my-1";
+    qntProduto.classList = "badge px-3 py-1 qtEstoque";
 
     //Chama a imagem através do endpoint
     img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
@@ -161,6 +163,7 @@ function exibirProdutos(produtos) {
     categoria.innerText = `${produto.dsCategoria}`;
     valor.innerText = `R$ ${produto.vlProduto}`;
     descricao.innerText = `${produto.dsProduto}`;
+    qntProduto.innerText = `Estoque: ${produto.qtdEstoqueProduto}`;
 
     //Define a ordem dos elementos
     divCard.appendChild(img);
@@ -169,6 +172,7 @@ function exibirProdutos(produtos) {
     cardBody.appendChild(categoria);
     cardBody.appendChild(valor);
     cardBody.appendChild(descricao);
+    cardBody.appendChild(qntProduto);
     divCard.appendChild(div);
     mainProdutos.appendChild(divCard);
   });
