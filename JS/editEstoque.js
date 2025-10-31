@@ -13,7 +13,7 @@ document.getElementById("editar").addEventListener("click", function () {
 
 document.getElementById("botaoEditar").addEventListener("click", function () {
   const cdEstoque = document.getElementById("cdEstoque").value;
-  const cdProduto = document.getElementById("cdEstoque").value;
+  const cdProduto = document.getElementById("cdProduto").value;
   const qtdEstoqueProduto = document.getElementById("qtdEstoqueProduto").value;
 
   const payload = {

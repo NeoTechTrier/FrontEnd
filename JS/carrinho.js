@@ -50,9 +50,8 @@ function exibirProdutos(produtos) {
     inputQt.type = "number";
     inputQt.id = `inputQt_${produto.cdProduto}`;
 
-    const qtdSalva = parseInt(
-      localStorage.getItem(`qtItem: ${produto.cdProduto}`)
-    );
+    const qtdSalva =
+      Number(localStorage.getItem(`qtItem_${produto.cdProduto}`)) || 1;
     inputQt.value = qtdSalva;
 
     inputGroup.appendChild(btnMenos);
@@ -178,7 +177,8 @@ function exibirProdutosSalvos() {
 
     if (PIX) {
       localStorage.setItem("formaPagamento", (formaPagamento = "PIX"));
-    } else if (CARTAO) {
+    }
+    if (CARTAO) {
       localStorage.setItem("formaPagamento", (formaPagamento = "CARTAO"));
     }
 
@@ -202,10 +202,10 @@ function exibirProdutosSalvos() {
 const urlPedidoCriar = "http://localhost:8085/pedido/criar";
 document.getElementById("finalizarCompra").addEventListener("click", () => {
   const formaPagamentoLocal = localStorage.getItem("formaPagamento");
-  const cdUsuario = localStorage.getItem("cdUsuario");
+  const cdUsuario = Number(localStorage.getItem("cdUsuario"));
   const formaPagamento = formaPagamentoLocal;
   const vlFrete = 50;
-  const vlTotalPedido = localStorage.getItem("valorPedido");
+  const vlTotalPedido = Number(localStorage.getItem("valorPedido")) || 0;
 
   const payload = {
     cdUsuario: cdUsuario,
@@ -248,18 +248,22 @@ const urlItemPedido = "http://localhost:8085/itempedido/criar";
 document.getElementById("cadItem").addEventListener("click", () => {
   const cdPedido = localStorage.getItem("cdPedido");
   const cdProduto = JSON.parse(localStorage.getItem("cdProdutos"));
-  const vlProdutoItem = JSON.parse(localStorage.getItem("vlProduto"));
+
   const qtItens = cdProduto.map(
-    (id) => parseInt(localStorage.getItem(`qtItem: ${id}`)) || []
+    (id) => parseInt(localStorage.getItem(`qtItem_${id}`)) || 1
+  );
+  const vlProdutoItem = cdProduto.map(
+    (id) => parseFloat(localStorage.getItem(`vlProduto_${id}`)) || 1
   );
   const token = localStorage.getItem("token");
 
   for (let i = 0; i < cdProduto.length; i++) {
+    console.log(cdPedido, cdProduto, qtItens, vlProdutoItem);
     const payload = {
       cdPedido: cdPedido,
       cdProduto: cdProduto[i],
       qtItem: qtItens[i],
-      vlItemPedido: vlProdutoItem,
+      vlItemPedido: vlProdutoItem[i],
     };
 
     fetch(urlItemPedido, {
