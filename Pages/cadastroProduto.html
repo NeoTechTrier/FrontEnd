@@ -122,6 +122,16 @@
     <div class="modal" id="modalEstoque" tabindex="-1" role="dialog">
       <div class="modal-dialog border border-2 border-primary" role="document">
         <div class="modal-content">
+           <div class="modal-header fundoGeral">
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              X
+            </button>
+          </div>
           <div class="modal-body text-center" id="mainForm">
               <h1>CADASTRO DE ESTOQUE</h1>
               <label for="cdProduto" class="fw-bold mb-2"
@@ -150,7 +160,7 @@
                 required
               />
               <button
-                class="btn btnCad fw-bold w-50 mb-3"
+                class="btn btn-outline-primary btnCad fw-bold w-50 mb-3"
                 id="botaoCadEstoque"
                 
               >

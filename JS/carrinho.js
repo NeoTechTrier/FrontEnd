@@ -177,8 +177,8 @@ function exibirProdutosSalvos() {
 
     lblFormaPag.innerText = "Selecione a forma de pagamento";
     btnFinalizar.innerText = `Finalizar Compra`;
-    PIX.innerText = `Pix`;
-    CARTAO.innerText = `Cartão`;
+    PIX.innerText = `PIX`;
+    CARTAO.innerText = `CARTÃO`;
 
     selectPagamento.appendChild(PIX);
     selectPagamento.appendChild(CARTAO);

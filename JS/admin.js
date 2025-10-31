@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const mainProdutos = document.querySelector("#mainProdutos");
 const urlApi = "http://localhost:8085/produto/listar/todos";
 const urlproduto = "http://localhost:8085/produto";
+const urlDelete = "http://localhost:8085/produto/delete";
 
 function exibirProdutos(produtos) {
   mainProdutos.innerHTML = "";
@@ -141,7 +142,7 @@ function exibirProdutos(produtos) {
     const categoria = document.createElement("span");
     const valor = document.createElement("p");
     const descricao = document.createElement("p");
-    const btnCarrinho = document.createElement("a");
+    const btnExcluir = document.createElement("button");
     const qntProduto = document.createElement("p");
 
     //Define as listas de classes dos elementos para os cards
@@ -153,6 +154,7 @@ function exibirProdutos(produtos) {
     categoria.classList = "badge px-3 py-1";
     valor.classList = "text-primary fw-bold my-1";
     qntProduto.classList = "badge px-3 py-1 qtEstoque";
+    btnExcluir.classList = "btn btn-outline-danger mt-2 w-100 mx-auto";
 
     //Chama a imagem através do endpoint
     img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
@@ -164,6 +166,15 @@ function exibirProdutos(produtos) {
     valor.innerText = `R$ ${produto.vlProduto}`;
     descricao.innerText = `${produto.dsProduto}`;
     qntProduto.innerText = `Estoque: ${produto.qtdEstoqueProduto}`;
+    btnExcluir.innerText = "EXCLUIR";
+
+    btnExcluir.addEventListener("click", function () {
+      produtoSelecionado = produto.cdProduto;
+      const modalDelete = new bootstrap.Modal(
+        document.getElementById("modalDelete")
+      );
+      modalDelete.show();
+    });
 
     //Define a ordem dos elementos
     divCard.appendChild(img);
@@ -173,8 +184,28 @@ function exibirProdutos(produtos) {
     cardBody.appendChild(valor);
     cardBody.appendChild(descricao);
     cardBody.appendChild(qntProduto);
+    div.appendChild(btnExcluir);
     divCard.appendChild(div);
     mainProdutos.appendChild(divCard);
+  });
+
+  document.getElementById("btnDelete").addEventListener("click", function () {
+    const token = localStorage.getItem("token");
+    fetch(`${urlDelete}/${produtoSelecionado}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro ao deletar produto: ${response.status}`);
+        }
+        alert("Produto excluído com sucesso!");
+        location.reload();
+      })
+      .catch((error) => {
+        alert(`Erro: ${error.message}`);
+        console.error("Erro ao deletar produto:", error);
+      });
   });
 }
 

@@ -50,13 +50,6 @@
               >CADASTRO</a
             >
           </li>
-          <li>
-            <a
-              class="dropdown-item btn btn-outline-primary fw-bold text-center text-primary w-100 h-100 btnGeral"
-              href="#"
-              >EDITAR</a
-            >
-          </li>
         </ul>
       </div>
       <div class="btn-group mx-2 mb-2">
@@ -169,6 +162,23 @@
       >
         <!--Produtos são carregados aqui dinamicamente-->
       </div>
+
+      <div class="modal" id="modalDelete" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header fundoGeral">
+        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body fundoGeral">
+        <h5 class="modal-title text-center">TEM CERTEZA EM DELETAR?</h5>
+      </div>
+      <div class="modal-footer fundoGeral">
+        <button type="button" class="btn btn-outline-danger mx-auto" data-bs-dismiss="modal">CANCELAR</button>
+        <button type="button" class="btn btn-outline-primary mx-auto" id="btnDelete">CONFIRMAR</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="../JS/admin.js"></script>
     <script

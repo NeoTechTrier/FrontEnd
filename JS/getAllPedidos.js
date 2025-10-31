@@ -25,7 +25,9 @@ function exibirPedido(pedidos) {
     cdUsuario.innerText = `CÓDIGO USUÁRIO: ${pedido.cdUsuario}`;
     formaPagamento.innerText = `FORMA DE PAGAMENTO: ${pedido.formaPagamento}`;
     vlFrete.innerText = `VALOR DO FRETE: R$${pedido.vlFrete}`;
-    vlTotalPedido.innerText = `VALOR TOTAL: R$${pedido.vlTotalPedido}`;
+    vlTotalPedido.innerText = `VALOR TOTAL: R$${pedido.vlTotalPedido.toFixed(
+      2
+    )}`;
 
     //Define a ordem dos elementos
     divCard.appendChild(cardBody);
