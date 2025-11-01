@@ -292,6 +292,23 @@ document.getElementById("cadItem").addEventListener("click", () => {
     });
   }
 
+  document
+    .getElementById("modalFinalizar")
+    .addEventListener("hidden.bs.modal", () => {
+      limparCarrinho();
+      window.location.href = "../Pages/logado.html";
+    });
+  function limparCarrinho() {
+    const cdProduto = JSON.parse(localStorage.getItem("cdProdutos"));
+    if (cdProduto) {
+      cdProduto.forEach((id) => {
+        localStorage.removeItem(`qtItem_${id}`);
+        localStorage.removeItem(`vlProduto_${id}`);
+      });
+    }
+    localStorage.removeItem("cdProdutos");
+  }
+
   alert("Itens do pedido enviados com sucesso!");
 });
 
