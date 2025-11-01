@@ -115,6 +115,67 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/*------------------------------------------------------------------------------------------------------*/
+const urlPedidosMeus = "http://localhost:8085/pedido/meus";
+const mainPedidoUsuario = document.getElementById("pedidosCliente");
+
+function exibirPedidos(pedidos) {
+  mainPedidoUsuario.innerHTML = "";
+  pedidos.forEach((pedido) => {
+    pedido.itens.forEach((item) => {
+      //Define quais elementos devem ser criados
+      const div = document.createElement("div");
+      const divCard = document.createElement("div");
+      const nomeProduto = document.createElement("p");
+      const quantidade = document.createElement("p");
+      const cardBody = document.createElement("div");
+      const cdPedido = document.createElement("p");
+      const valorTotal = document.createElement("p");
+
+      //Define as listas de classes dos elementos para os cards
+      div.classList = "px-5 pb-3";
+      divCard.classList = "card my-3 mx-auto rounded-4";
+      cardBody.classList = "card-body text-center";
+      cdPedido.classList = "fw-bold";
+      quantidade.classList = "fw-bold";
+      valorTotal.classList = "fw-bold";
+      cdPedido.classList = "fw-bold";
+      nomeProduto.classList = "text-primary fw-bold my-1";
+      valorTotal.classList = "text-primary fw-bold my-1";
+
+      nomeProduto.innerText = `Nome Produto: ${item.nmProduto}`;
+      quantidade.innerText = `Quantidade: ${item.quantidade}`;
+      cdPedido.innerText = `Código do pedido: ${pedido.cdPedido}`;
+      valorTotal.innerText = `Valor total: ${pedido.valorTotal.toFixed(2)}`;
+
+      //Define a ordem dos elementos
+      cardBody.appendChild(nomeProduto);
+      cardBody.appendChild(quantidade);
+      divCard.appendChild(cardBody);
+      cardBody.appendChild(cdPedido);
+      cardBody.appendChild(valorTotal);
+      divCard.appendChild(div);
+      mainPedidoUsuario.appendChild(divCard);
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
+  fetch(urlPedidosMeus, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((response) => response.json())
+    .then((pedidos) => {
+      exibirPedidos(pedidos);
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar pedidos:", error);
+    });
+});
+/*------------------------------------------------------------------------------------------------------*/
+
 document.getElementById("logout").addEventListener("click", function () {
   localStorage.clear();
 });
