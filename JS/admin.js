@@ -1,10 +1,19 @@
+const token = localStorage.getItem("token");
+
 const mainUsuarios = document.querySelector("#mainUsuario");
+const mainEstoque = document.querySelector("#mainEstoque");
+const mainProdutos = document.querySelector("#mainProdutos");
+
 const urlUsuario = "http://localhost:8085/usuario/listar/usuarios";
+const urlEstoque = "http://localhost:8085/estoque/listar/todos";
+const urlApiProdutos = "http://localhost:8085/produto/listar/todos";
+const urlProduto = "http://localhost:8085/produto";
+const urlProdutoCriar = "http://localhost:8085/produto/criar";
+const urlEstoqueCriar = "http://localhost:8085/estoque/criar";
 
 function exibirUsuario(usuarios) {
   mainUsuarios.innerHTML = "";
   usuarios.forEach((usuario) => {
-    //Define quais elementos devem ser criados
     const divCard = document.createElement("div");
     const cardBody = document.createElement("div");
     const nome = document.createElement("p");
@@ -13,127 +22,60 @@ function exibirUsuario(usuarios) {
     const cidade = document.createElement("p");
     const flAtivo = document.createElement("p");
 
-    //Define as listas de classes dos elementos para os cards
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
     nome.classList = "text-center text-light fw-bold my-1";
-    telefone.classList = "text-primary fw-bold my-1";
-    email.classList = "text-primary fw-bold my-1";
-    cidade.classList = "text-primary fw-bold my-1";
-    flAtivo.classList = "text-primary fw-bold my-1";
+    telefone.classList = email.classList = cidade.classList = flAtivo.classList =
+      "text-primary fw-bold my-1";
 
-    //Define os dados a serem renderizados
     nome.innerText = `${usuario.nmCliente}`;
     email.innerText = `EMAIL: ${usuario.dsEmail}`;
     telefone.innerText = `TELEFONE: ${usuario.nuTelefone}`;
     cidade.innerText = `CIDADE: ${usuario.dsCidade}`;
     flAtivo.innerText = `ATIVO: ${usuario.flAtivo}`;
 
-    //Define a ordem dos elementos
     divCard.appendChild(cardBody);
-    cardBody.appendChild(nome);
-    cardBody.appendChild(email);
-    cardBody.appendChild(telefone);
-    cardBody.appendChild(cidade);
-    cardBody.appendChild(flAtivo);
+    [nome, email, telefone, cidade, flAtivo].forEach((el) =>
+      cardBody.appendChild(el)
+    );
     mainUsuarios.appendChild(divCard);
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("token");
-  fetch(urlUsuario, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro ao buscar usuários\n" + ` ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      exibirUsuario(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar usuários:" + error);
-    });
-});
-
-/*------------------------------------------------------------------------------------------------------*/
-const mainEstoque = document.querySelector("#mainEstoque");
-const urlEstoque = "http://localhost:8085/estoque/listar/todos";
-
 function exibirEstoque(estoques) {
   mainEstoque.innerHTML = "";
   estoques.forEach((estoque) => {
-    //Define quais elementos devem ser criados
     const divCard = document.createElement("div");
     const cardBody = document.createElement("div");
-    const codigoProduto = document.createElement("p");
     const cdEstoque = document.createElement("p");
+    const codigoProduto = document.createElement("p");
     const nmProduto = document.createElement("p");
     const qtdEstoqueProduto = document.createElement("p");
     const flAtivoEstoque = document.createElement("p");
 
-    //Define as listas de classes dos elementos para os cards
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
     cdEstoque.classList = "text-center text-light fw-bold my-1";
-    codigoProduto.classList = "text-primary fw-bold my-1";
-    nmProduto.classList = "text-primary fw-bold my-1";
-    qtdEstoqueProduto.classList = "text-primary fw-bold my-1";
-    flAtivoEstoque.classList = "text-primary fw-bold my-1";
+    codigoProduto.classList = nmProduto.classList = qtdEstoqueProduto.classList = flAtivoEstoque.classList =
+      "text-primary fw-bold my-1";
 
-    //Define os dados a serem renderizados
     cdEstoque.innerText = `CÓDIGO ESTOQUE: ${estoque.cdEstoque}`;
     codigoProduto.innerText = `CÓDIGO PRODUTO: ${estoque.cdProduto}`;
     nmProduto.innerText = `NOME PRODUTO: ${estoque.nmProduto}`;
     qtdEstoqueProduto.innerText = `QUANTIDADE: ${estoque.qtdEstoqueProduto}`;
     flAtivoEstoque.innerText = `ATIVO: ${estoque.flAtivo}`;
 
-    //Define a ordem dos elementos
     divCard.appendChild(cardBody);
-    cardBody.appendChild(cdEstoque);
-    cardBody.appendChild(codigoProduto);
-    cardBody.appendChild(nmProduto);
-    cardBody.appendChild(qtdEstoqueProduto);
-    cardBody.appendChild(flAtivoEstoque);
+    [cdEstoque, codigoProduto, nmProduto, qtdEstoqueProduto, flAtivoEstoque].forEach(
+      (el) => cardBody.appendChild(el)
+    );
     mainEstoque.appendChild(divCard);
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("token");
-  fetch(urlEstoque, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro ao buscar estoque\n" + ` ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      exibirEstoque(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar estoque:" + error);
-    });
-});
-
-/*------------------------------------------------------------------------------------------------------*/
-
-const mainProdutos = document.querySelector("#mainProdutos");
-const urlApi = "http://localhost:8085/produto/listar/todos";
-const urlproduto = "http://localhost:8085/produto";
-
 function exibirProdutos(produtos) {
   mainProdutos.innerHTML = "";
   produtos.forEach((produto) => {
-    //Define quais elementos devem ser criados
-    const div = document.createElement("div");
     const divCard = document.createElement("div");
     const cardBody = document.createElement("div");
     const img = document.createElement("img");
@@ -141,10 +83,7 @@ function exibirProdutos(produtos) {
     const categoria = document.createElement("span");
     const valor = document.createElement("p");
     const descricao = document.createElement("p");
-    const btnCarrinho = document.createElement("a");
 
-    //Define as listas de classes dos elementos para os cards
-    div.classList = "px-5 pb-3";
     divCard.classList = "card my-3 mx-auto rounded-4";
     cardBody.classList = "card-body";
     img.classList = "card-img-top";
@@ -152,166 +91,133 @@ function exibirProdutos(produtos) {
     categoria.classList = "badge px-3 py-1";
     valor.classList = "text-primary fw-bold my-1";
 
-    //Chama a imagem através do endpoint
-    img.src = `${urlproduto}/${produto.cdProduto}/imagem`;
+    img.src = `${urlProduto}/${produto.cdProduto}/imagem`;
     img.alt = produto.nmProduto;
-
-    //Define os dados a serem renderizados
-    title.innerText = `${produto.nmProduto}`;
-    categoria.innerText = `${produto.dsCategoria}`;
+    title.innerText = produto.nmProduto;
+    categoria.innerText = produto.dsCategoria;
     valor.innerText = `R$ ${produto.vlProduto}`;
-    descricao.innerText = `${produto.dsProduto}`;
+    descricao.innerText = produto.dsProduto;
 
-    //Define a ordem dos elementos
     divCard.appendChild(img);
     divCard.appendChild(cardBody);
-    cardBody.appendChild(title);
-    cardBody.appendChild(categoria);
-    cardBody.appendChild(valor);
-    cardBody.appendChild(descricao);
-    divCard.appendChild(div);
+    [title, categoria, valor, descricao].forEach((el) => cardBody.appendChild(el));
     mainProdutos.appendChild(divCard);
   });
 }
 
-//GET produtos home
-document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("token");
-  fetch(urlApi, {
+
+async function fetchComErro(url, options = {}) {
+  try {
+    const response = await fetch(url, options);
+    let data = null;
+    try {
+      data = await response.json();
+    } catch {}
+    if (!response.ok) {
+      const mensagemErro = data?.message || data?.error || `Erro ${response.status}`;
+      throw new Error(mensagemErro);
+    }
+    return data;
+  } catch (error) {
+    alert(`${error.message}`);
+    console.error("Erro na requisição:", error);
+    return null;
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const usuarios = await fetchComErro(urlUsuario, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      exibirProdutos(data);
-    });
+  });
+  if (usuarios) exibirUsuario(usuarios);
+
+  const estoques = await fetchComErro(urlEstoque, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (estoques) exibirEstoque(estoques);
+
+  const produtos = await fetchComErro(urlApiProdutos, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (produtos) exibirProdutos(produtos);
 });
 
-/*------------------------------------------------------------------------------------------------------*/
 
-const urlProduto = "http://localhost:8085/produto/criar";
+document.getElementById("botaoCadProduto").addEventListener("click", async function (e) {
+  e.preventDefault();
+  const nmProduto = document.getElementById("nmProduto").value;
+  const vlProduto = document.getElementById("vlProduto").value;
+  const dsProduto = document.getElementById("dsProduto").value;
+  const dsCategoria = document.getElementById("dsCategoria").value;
+  const imgProduto = document.getElementById("imgProduto").files[0];
+  const cdEmpresa = document.getElementById("cdEmpresa").value;
 
-const cadEstoque = document.getElementById("formCadEstoque");
-const cadProduto = document.getElementById("formCadProduto");
+  if (!nmProduto || !vlProduto || !dsProduto || !dsCategoria || !imgProduto) {
+    alert("Por favor, preencha todos os campos!");
+    return;
+  }
 
-//POST produtos
-document
-  .getElementById("botaoCadProduto")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    const nmProduto = document.getElementById("nmProduto").value;
-    const vlProduto = document.getElementById("vlProduto").value;
-    const dsProduto = document.getElementById("dsProduto").value;
-    const dsCategoria = document.getElementById("dsCategoria").value;
-    const imgProduto = document.getElementById("imgProduto").files[0];
-    const cdEmpresa = document.getElementById("cdEmpresa").value;
+  const categoriaMap = {
+    "1": "PERIFERICOS",
+    "2": "GABINETE",
+    "3": "RAM",
+    "4": "PROCESSADOR",
+  };
+  const Categoria = categoriaMap[dsCategoria];
 
-    let Categoria;
-    switch (dsCategoria) {
-      case "1":
-        Categoria = "PERIFERICOS";
-        break;
-      case "2":
-        Categoria = "GABINETE";
-        break;
-      case "3":
-        Categoria = "RAM";
-        break;
-      case "4":
-        Categoria = "PROCESSADOR";
-        break;
-    }
+  const formData = new FormData();
+  formData.set("nmProduto", nmProduto);
+  formData.set("vlProduto", vlProduto.replace(",", "."));
+  formData.set("dsProduto", dsProduto);
+  formData.set("dsCategoria", Categoria);
+  formData.set("imgProduto", imgProduto);
+  formData.set("cdEmpresa", cdEmpresa);
 
-    if (nmProduto && vlProduto && dsCategoria && dsProduto && imgProduto) {
-      const formData = new FormData();
-      formData.set("nmProduto", nmProduto);
-      formData.set("vlProduto", vlProduto.replace(",", "."));
-      formData.set("dsProduto", dsProduto);
-      formData.set("dsCategoria", Categoria);
-      formData.set("imgProduto", imgProduto);
-      formData.set("cdEmpresa", cdEmpresa);
-      console.log(imgProduto);
-
-      const token = localStorage.getItem("token");
-      fetch(urlProduto, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Erro ao enviar dados: ${response.status}`);
-          }
-          console.log(imgProduto);
-          cadProduto.classList.toggle("d-block");
-          return response.json();
-        })
-        .then((data) => {
-          alert(
-            "Dados enviados com sucesso!" +
-              "Código do produto: " +
-              data.cdProduto
-          );
-          console.log("Resposta da API:", data);
-          document.getElementById("cdProduto").value = data.cdProduto;
-        })
-        .catch((error) => {
-          alert(`Erro: ${error.message}`);
-          console.error("Erro no envio:", error);
-        });
-    } else {
-      alert("Por favor, preencha todos os campos!");
-    }
+  const data = await fetchComErro(urlProdutoCriar, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData,
   });
-
-/*------------------------------------------------------------------------------------------------------*/
-const urlEstoqueCriar = "http://localhost:8085/estoque/criar";
-
-document
-  .getElementById("botaoCadEstoque")
-  .addEventListener("click", function () {
-    const cdProduto = document.getElementById("cdProduto").value;
-    const qtdEstoqueProduto =
-      document.getElementById("qtdEstoqueProduto").value;
-
-    if (cdProduto && qtdEstoqueProduto) {
-      const payload = {
-        cdProduto: parseInt(cdProduto),
-        qtdEstoqueProduto: parseInt(qtdEstoqueProduto),
-      };
-
-      const token = localStorage.getItem("token");
-      fetch(urlEstoqueCriar, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Erro ao enviar dados: ${response.status}`);
-          }
-          const modalEstoque = new bootstrap.Modal(
-            document.getElementById("modalEstoque")
-          );
-          modalEstoque.show();
-          return response.json();
-        })
-        .then((data) => {
-          alert("Dados enviados com sucesso");
-          console.log("Resposta da API:", data);
-        })
-        .catch((error) => {
-          alert(`Error: ${error.message}`);
-          console.error(`Erro ${error.message}`);
-        });
-    } else {
-      alert("Por favor, preencha todos os campos!");
-    }
-  });
-
-document.getElementById("logoutAdmin").addEventListener("click", () => {
-  localStorage.clear();
+  if (data) {
+    alert(`✅ Dados enviados com sucesso! Código do produto: ${data.cdProduto}`);
+    document.getElementById("cdProduto").value = data.cdProduto;
+    cadProduto.classList.toggle("d-block");
+  }
 });
+
+
+document.getElementById("botaoCadEstoque").addEventListener("click", async function () {
+  const cdProduto = document.getElementById("cdProduto").value;
+  const qtdEstoqueProduto = document.getElementById("qtdEstoqueProduto").value;
+
+  if (!cdProduto || !qtdEstoqueProduto) {
+    alert("Por favor, preencha todos os campos!");
+    return;
+  }
+
+  const payload = {
+    cdProduto: parseInt(cdProduto),
+    qtdEstoqueProduto: parseInt(qtdEstoqueProduto),
+  };
+
+  const data = await fetchComErro(urlEstoqueCriar, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  if (data) {
+    const modalEstoque = new bootstrap.Modal(document.getElementById("modalEstoque"));
+    modalEstoque.show();
+    alert("Dados enviados com sucesso");
+  }
+});
+
+document.getElementById("logoutAdmin")?.addEventListener("click", () => localStorage.clear());
+document.getElementById("logout")?.addEventListener("click", () => localStorage.clear());

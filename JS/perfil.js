@@ -4,12 +4,20 @@ const urlPerfil = "http://localhost:8085/usuario/buscar";
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
   const cdUsuario = localStorage.getItem("cdUsuario");
+
   fetch(`${urlPerfil}/${cdUsuario}`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   })
-    .then((response) => response.json())
-    .then((data) => {
+    .then(async (response) => {
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        const mensagemErro =
+          data?.message || data?.error || `Erro ${response.status}`;
+        alert(`${mensagemErro}`);
+        console.error("Erro ao buscar perfil:", data);
+        return;
+      }
       document.getElementById("nmCliente").value = data.nmCliente;
       document.getElementById("nuCPF").value = data.nuCPF;
       document.getElementById("nuTelefone").value = data.nuTelefone;
@@ -19,10 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("dsEmail").value = data.dsEmail;
       document.getElementById("nuEndereco").value = data.nuEndereco;
       document.getElementById("nuRG").value = data.nuRG;
-      console.log(data);
-      console.log(token);
-      console.log(cdUsuario);
+    })
+    .catch((error) => {
+      alert(`Erro de conexão: ${error.message}`);
+      console.error("Erro inesperado:", error);
     });
+
   document.getElementById("editarModal").addEventListener("click", () => {
     const modalAviso = new bootstrap.Modal(
       document.getElementById("modalAviso")
@@ -30,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modalAviso.show();
   });
 
-  document.getElementById("botaoEditar").addEventListener("click", function () {
+  document.getElementById("botaoEditar").addEventListener("click", async function () {
     const nmCliente = document.getElementById("nmCliente").value;
     const nuCPF = document.getElementById("nuCPF").value;
     const nuTelefone = document.getElementById("nuTelefone").value;
@@ -43,38 +53,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validarCPF(cpf) {
       cpf = cpf.replace(/[^\d]+/g, "");
-
-      if (cpf.length !== 11) return false;
-
-      if (/^(\d)\1{10}$/.test(cpf)) return false;
-
+      if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
       let soma = 0;
-      let resto;
-
-      for (let i = 1; i <= 9; i++) {
-        soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
-      }
-
-      resto = (soma * 10) % 11;
+      for (let i = 1; i <= 9; i++) soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+      let resto = (soma * 10) % 11;
       if (resto === 10 || resto === 11) resto = 0;
-
       if (resto !== parseInt(cpf.charAt(9))) return false;
       soma = 0;
-      for (let i = 1; i <= 10; i++) {
-        soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
-      }
-
+      for (let i = 1; i <= 10; i++) soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
       resto = (soma * 10) % 11;
       if (resto === 10 || resto === 11) resto = 0;
-      if (resto !== parseInt(cpf.charAt(10))) return false;
-
-      return true;
+      return resto === parseInt(cpf.charAt(10));
     }
 
     if (!validarCPF(nuCPF)) {
       alert("CPF inválido!");
       return;
     }
+
     const payload = {
       nmCliente: nmCliente,
       nuCPF: nuCPF,
@@ -86,32 +82,35 @@ document.addEventListener("DOMContentLoaded", function () {
       nuEndereco: nuEndereco,
       dsEmail: dsEmail,
     };
+
     const token = localStorage.getItem("token");
     const cdUsuario = localStorage.getItem("cdUsuario");
 
-    fetch(`${urlEditarPerfil}/${cdUsuario}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erro ao enviar dados: ${response.status}`);
-        }
-
-        return response.json();
-      })
-      .then((data) => {
-        alert("Dados atualizados com sucesso!");
-        console.log("Resposta da API:", data);
-      })
-      .catch((error) => {
-        alert(`Erro: ${error.message}`);
-        console.error("Erro no envio:", error);
+    try {
+      const response = await fetch(`${urlEditarPerfil}/${cdUsuario}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
       });
+
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        const mensagemErro =
+          data?.message || data?.error || `Erro ${response.status}`;
+        alert(`${mensagemErro}`);
+        console.error("Erro ao atualizar perfil:", data);
+        return;
+      }
+
+      alert("Dados atualizados com sucesso!");
+      console.log("Resposta da API:", data);
+    } catch (error) {
+      alert(`Erro de conexão: ${error.message}`);
+      console.error("Erro no envio:", error);
+    }
   });
 });
 
