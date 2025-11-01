@@ -47,6 +47,8 @@
       ></div>
     </div>
 
+    <!------------------------------------------------------------------------------------------------------->
+
     <div class="modal" id="modalFinalizar" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -69,6 +71,7 @@
               class="btn btn-outline-danger mx-auto"
               data-bs-dismiss="modal"
               aria-label="Close"
+              id="cancelarItem"
             >
               CANCELAR
             </button>
@@ -83,6 +86,30 @@
         </div>
       </div>
     </div>
+
+    <div class="modal" id="alertaPedido" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header fundoGeral">
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              X
+            </button>
+          </div>
+          <div class="modal-body fundoGeral">
+            <h5 class="modal-title text-center mx-auto">
+              FINALIZADO COM SUCESSO
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------->
 
     <script src="../JS/carrinho.js"></script>
     <script

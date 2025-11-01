@@ -13,6 +13,10 @@ const btnLogin = document
         dsSenha: dsSenha,
       };
 
+      const alertaLogin = new bootstrap.Modal(
+        document.getElementById("alertaLogin")
+      );
+
       fetch(urlLogin, {
         method: "POST",
         headers: {
@@ -29,21 +33,21 @@ const btnLogin = document
         .then((data) => {
           const token = data.token;
 
-          if (!token) {
-            alert("Login falhou: token não recebido!");
-            return;
-          }
-
           localStorage.setItem("token", token);
           localStorage.setItem("cdUsuario", data.cdUsuario);
           localStorage.setItem("dsEstado", data.dsEstado);
 
-          if (data.userRole === "USER") {
-            window.location.href = "logado.html";
-          } else if (data.userRole === "ADMIN") {
-            window.location.href = "homeAdmin.html";
-          }
-          alert("Login realizado com sucesso!");
+          alertaLogin.show();
+
+          document
+            .getElementById("fecharLogin")
+            .addEventListener("click", function () {
+              if (data.userRole === "USER") {
+                window.location.href = "logado.html";
+              } else if (data.userRole === "ADMIN") {
+                window.location.href = "homeAdmin.html";
+              }
+            });
         })
         .catch((error) => {
           alert(`Erro: ${error.message}`);

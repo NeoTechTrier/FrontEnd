@@ -91,8 +91,11 @@ function exibirProdutos(produtos) {
           localStorage.setItem("cdProdutos", JSON.stringify(produtosSalvos));
           localStorage.setItem("vlProduto", JSON.stringify(produto.vlProduto));
         }
+        const modalAddCarrinho = new bootstrap.Modal(
+          document.getElementById("modalAddCarrinho")
+        );
+        modalAddCarrinho.show();
         salvarProduto(produto.cdProduto);
-        alert("Produto salvo no carrinho!" + produto.nmProduto);
       });
 
       // eventos para alterar e salvar quantidade

@@ -468,7 +468,6 @@ document.getElementById("finalizarCompra").addEventListener("click", () => {
         document.getElementById("modalFinalizar")
       );
       modalFinalizar.show();
-      alert("Dados enviados com sucesso");
     })
     .catch((error) => {
       alert(`Error: ${error.message}`);
@@ -512,10 +511,19 @@ document.getElementById("cadItem").addEventListener("click", () => {
       }
       return response.json();
     });
+    const alertaPedido = new bootstrap.Modal(
+      document.getElementById("alertaPedido")
+    );
+    alertaPedido.show();
+    const btnCadItem = document.getElementById("cadItem");
+    const btnCancelarItem = document.getElementById("cancelarItem");
+
+    btnCadItem.classList = "d-none";
+    btnCancelarItem.classList = "d-none";
   }
 
   document
-    .getElementById("modalFinalizar")
+    .getElementById("alertaPedido")
     .addEventListener("hidden.bs.modal", () => {
       limparCarrinho();
       window.location.href = "../Pages/logado.html";
@@ -530,8 +538,6 @@ document.getElementById("cadItem").addEventListener("click", () => {
     }
     localStorage.removeItem("cdProdutos");
   }
-
-  alert("Itens do pedido enviados com sucesso!");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
