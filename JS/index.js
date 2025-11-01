@@ -161,10 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const categoria = img.getAttribute("data-categoria");
 
       if (!categoria) {
-        //Exibi todos os filtros
         exibirProdutos(todosProdutos);
       } else {
-        //Exibi apenas a categoria selecionada
         const filtrados = todosProdutos.filter(
           (produto) => produto.dsCategoria === categoria
         );
@@ -194,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*------------------------------------------------------------------------------------------------------*/
-//CADASTRO DE USUÁRIO
 const urlUsuario = "http://localhost:8085/auth/register";
 
 document.getElementById("botaoCad").addEventListener("click", function () {
